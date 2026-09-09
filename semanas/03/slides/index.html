@@ -915,7 +915,7 @@ Content-Type: application/json
       <div class="bg-secondary-card" style="border-left: 4px solid var(--text-muted);">
         <h3 style="color: var(--text-muted); margin-bottom: 12px;">Prompt vago</h3>
         <p style="font-style: italic; font-size: 0.78em; line-height: 1.5;">
-          "hace una API para guardar tareas"
+          "hacé un endpoint para guardar tareas"
         </p>
         <p style="font-size: 0.7em; color: var(--text-muted); margin-top: 16px;">
           La intención está clara. La IA elige method, path, forma del body, código de éxito y código de falla — y vos no lo sabés hasta leer línea por línea.
@@ -939,8 +939,8 @@ Content-Type: application/json
     </p>
     <aside class="notes">
       <p><u>Cierre de §2. Mismo patrón que las clases anteriores: misma intención, dos prompts. Disclosure honesto sobre LLMs modernos y los tres ejes — determinismo, iteración, auditoría.</u></p>
-      <p><em>"Cierre de la sección. Comparemos dos prompts para la misma tarea: una API para guardar tareas. Mirá las dos versiones — la intención es exactamente la misma."</em></p>
-      <p><em>"Quiero ser honesto antes de seguir. Si vos hoy le pasás el prompt de la izquierda a Claude, a ChatGPT o a Gemini, lo más probable es que te devuelva algo que compila y que más o menos hace lo que pediste. Las APIs de tareas son un caso textbook que los modelos vieron diez mil veces. Probablemente elija POST barra tasks, probablemente devuelva doscientos uno. La pregunta legítima es: si la IA acierta sola, ¿para qué necesito el vocabulario?"</em></p>
+      <p><em>"Cierre de la sección. Comparemos dos prompts que piden lo mismo: un endpoint para guardar tareas. Mirá las dos versiones — la intención es idéntica; lo único que cambia es cuánto dejás sin decir."</em></p>
+      <p><em>"Quiero ser honesto antes de seguir. Si vos hoy le pasás el prompt de la izquierda a Claude, a ChatGPT o a Gemini, lo más probable es que te devuelva algo que compila y que más o menos hace lo que pediste. Un endpoint para guardar tareas es un caso textbook que los modelos vieron diez mil veces. Probablemente elija POST barra tasks, probablemente devuelva doscientos uno. La pregunta legítima es: si la IA acierta sola, ¿para qué necesito el vocabulario?"</em></p>
       <p><em>"Por tres razones. Primero, determinismo. La IA acertó esta vez con tareas, un caso super común. Probá pedirle algo menos textbook — un endpoint que reciba un archivo CSV, un endpoint que coordine dos recursos, un endpoint con paginación particular — y la respuesta empieza a variar entre corridas: a veces POST, a veces PUT, a veces el código de error es 400, a veces 422. Con LLMs nunca eliminás la variación, pero la achicás mucho cuando el contrato está fijado."</em></p>
       <p><em>"Segundo, iteración. Tu próximo prompt va a ser 'agregale un campo priority' o 'que devuelva 409 si ya existe una tarea con ese título'. Si en el primer prompt no nombraste method, path, ni body, la IA tiene que adivinar a qué te referís y vos tenés que escribir más. El vocabulario hace barato cada paso siguiente."</em></p>
       <p><em>"Tercero, auditoría. El prompt específico te deja verificar el código punto por punto contra el contrato que escribiste, no contra una idea vaga en tu cabeza. Te llega el código, abrís el archivo, mirás si el method es POST, si el path es slash tasks, si valida que title está, si devuelve 201 cuando crea y 400 cuando falta título. Cinco cheques mecánicos. Sin el contrato, ni siquiera tenés la lista de cheques."</em></p>
