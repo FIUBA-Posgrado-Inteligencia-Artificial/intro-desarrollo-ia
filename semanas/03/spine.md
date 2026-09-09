@@ -89,3 +89,14 @@
 - (Apropiación visceral) Lo que ustedes dictaron fue el contrato; ahora tiene archivo. El rol — supervisor arquitectónico — sobrevivió la mudanza al servidor.
 **Animations / interactive:** None new. Reusa `clickable-steps` (mismo componente del §8 anterior) para los 6 beats. `section-divider` para apertura.
 **Slide budget:** 5 slides (divider → 5 requisitos + counter → plantilla del prompt → 6 beats → cierre + bridge a semana 4).
+
+## Section 9: Trabajo Práctico 2
+**Source material:** `source_material/09-trabajo-practico-2.md`
+**Through-line:** El alumno acaba de ver el movimiento entero en el demo; ahora lo hace sobre un dominio propio. La consigna no agrega concepto nuevo: convierte el recorte de la clase —el contrato, no la implementación— en una entrega.
+**What students walk away knowing:**
+- Qué entregar (`openapi.yaml` + `prompts.md` + `README.md` en una carpeta `tp2/`) y bajo qué constraints (individual, una sola conversación, herramienta libre).
+- Los cuatro requisitos del yaml son los mismos que se le pidieron al del demo: tres methods, jerarquía de recursos, un error documentado, schemas tipados.
+- Que el yaml no muere en la entrega: es la entrada de la semana 4.
+**Animations / interactive:** None. Reusa `section-divider`, `s4-three-card` y `comparison-2col`.
+**Slide budget:** 4 slides (divider → consigna + 4 requisitos → constraints y entregable → cierre de la clase). El cierre de la clase se movió acá desde §8: viene después de la consigna a propósito, para que el TP quede enmarcado y no suelto.
+

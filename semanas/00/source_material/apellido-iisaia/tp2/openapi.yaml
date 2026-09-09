@@ -1,0 +1,138 @@
+openapi: 3.1.0
+info:
+  title: API de proyectos y tareas
+  description: Cada proyecto agrupa tareas. Una tarea no existe fuera de un proyecto.
+  version: 1.0.0
+
+paths:
+  /projects:
+    get:
+      summary: Lista todos los proyectos
+      responses:
+        '200':
+          description: Lista de proyectos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+    post:
+      summary: Crea un proyecto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectInput'
+      responses:
+        '201':
+          description: Proyecto creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Falta el campo name
+
+  /projects/{projectId}/tasks:
+    parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Lista las tareas de un proyecto
+      responses:
+        '200':
+          description: Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+        '404':
+          description: El proyecto no existe
+    post:
+      summary: Crea una tarea dentro de un proyecto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskInput'
+      responses:
+        '201':
+          description: Tarea creada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          description: Falta el campo title
+        '404':
+          description: El proyecto no existe
+
+  /projects/{projectId}/tasks/{taskId}:
+    parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: integer
+    delete:
+      summary: Borra una tarea
+      responses:
+        '204':
+          description: Tarea borrada
+        '404':
+          description: La tarea no existe
+
+components:
+  schemas:
+    Project:
+      type: object
+      required: [id, name]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+
+    ProjectInput:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+
+    Task:
+      type: object
+      required: [id, title, project_id]
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        due_date:
+          type: string
+          format: date
+        project_id:
+          type: integer
+
+    TaskInput:
+      type: object
+      required: [title]
+      properties:
+        title:
+          type: string
+        due_date:
+          type: string
+          format: date

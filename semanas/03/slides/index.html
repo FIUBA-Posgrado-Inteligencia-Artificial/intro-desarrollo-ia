@@ -2484,7 +2484,100 @@ endpoints:
     </aside>
   </section>
 
-  <!-- §8.5: Cierre — el contrato tiene archivo -->
+</section>
+
+
+      <!-- ============================================================
+           §9 — Trabajo Práctico 2
+           ============================================================ -->
+<section>
+
+  <!-- §9.1: Section divider -->
+  <section class="section-divider">
+    <h2>Trabajo Pr&aacute;ctico 2</h2>
+    <p style="color: var(--text-muted); font-size: 0.85em; margin-top: 8px;">Individual. Un <code>openapi.yaml</code> de una API que se te ocurra. Arranca ac&aacute;, se termina en casa.</p>
+    <aside class="notes">
+      <p><u>Divider del TP 2. Viene despu&eacute;s del demo a prop&oacute;sito: acaban de ver el movimiento entero, ahora lo hacen ellos.</u></p>
+      <p><em>"Y con eso llegamos al trabajo pr&aacute;ctico dos, que es exactamente lo que acaban de verme hacer. Yo eleg&iacute; proyectos y tareas porque lo ven&iacute;amos usando toda la clase; ustedes van a elegir la API que quieran."</em></p>
+      <p><em>"Es individual, y el tiempo que queda de clase es para arrancarlo y sacarse las dudas conmigo ac&aacute;. No hace falta que quede terminado hoy; se termina en casa y queda subido al repositorio."</em></p>
+    </aside>
+  </section>
+
+  <!-- §9.2: La consigna -->
+  <section>
+    <h2>Dictale a una IA el contrato de tu API</h2>
+    <p style="font-size: 0.85em; margin: 8px auto 6px; max-width: 44em; text-align: center;">
+      Eleg&iacute; un dominio que conozcas y describilo como API. No hay que implementar nada: el entregable es <strong>el contrato</strong>.
+    </p>
+    <p style="font-size: 0.72em; color: var(--text-muted); margin: 0 auto 14px; max-width: 44em; text-align: center;">
+      Una biblioteca, un gimnasio, un recetario, una veterinaria, un torneo. Cualquier cosa con dos recursos que se relacionen.
+    </p>
+    <div class="s4-three-card" style="margin-top: 4px;">
+      <div class="bg-secondary-card" style="border-left: 4px solid var(--accent);">
+        <p class="s4-card-eyebrow" style="color: var(--accent);">Requisito 1</p>
+        <h3 style="color: var(--accent);">Tres methods</h3>
+        <p class="s4-card-foot">M&iacute;nimo <code>GET</code>, <code>POST</code> y <code>DELETE</code>.</p>
+      </div>
+      <div class="bg-secondary-card" style="border-left: 4px solid var(--accent);">
+        <p class="s4-card-eyebrow" style="color: var(--accent);">Requisito 2</p>
+        <h3 style="color: var(--accent);">Jerarqu&iacute;a</h3>
+        <p class="s4-card-foot">Un recurso adentro de otro, visible en el path.</p>
+      </div>
+      <div class="bg-secondary-card" style="border-left: 4px solid var(--accent);">
+        <p class="s4-card-eyebrow" style="color: var(--accent);">Requisito 3</p>
+        <h3 style="color: var(--accent);">Un error</h3>
+        <p class="s4-card-foot">Al menos un <code>400</code> o <code>404</code> documentado.</p>
+      </div>
+      <div class="bg-secondary-card" style="border-left: 4px solid var(--accent);">
+        <p class="s4-card-eyebrow" style="color: var(--accent);">Requisito 4</p>
+        <h3 style="color: var(--accent);">Schemas tipados</h3>
+        <p class="s4-card-foot"><code>type</code>, <code>required</code>, y <code>format</code> donde aplique.</p>
+      </div>
+    </div>
+    <aside class="notes">
+      <p><u>La consigna. Los cuatro requisitos son los mismos que le pedimos al yaml del demo, menos la iteraci&oacute;n en vivo, que ac&aacute; se evidencia en el prompts.md.</u></p>
+      <p><em>"La consigna es corta: eleg&iacute; un dominio que conozcas y describilo como API. Una biblioteca con libros y pr&eacute;stamos, un gimnasio con socios y clases, un recetario con recetas e ingredientes, una veterinaria con mascotas y turnos. Lo que quieran, pero que tenga dos recursos que se relacionen, porque si no la jerarqu&iacute;a no tiene d&oacute;nde aparecer."</em></p>
+      <p><em>"Y quiero ser expl&iacute;cito con esto: no hay que implementar nada. No hay servidor, no hay base de datos, no hay c&oacute;digo que corra. El entregable es el contrato. Es el mismo recorte que hicimos hoy en el demo."</em></p>
+      <p><em>"Cuatro requisitos, y son los mismos que le ped&iacute; al m&iacute;o hace un rato. Tres methods como m&iacute;nimo: GET, POST y DELETE. Una jerarqu&iacute;a de recursos visible en el path, del estilo barra algo barra id barra otra-cosa. Al menos una respuesta de error documentada, un 400 o un 404. Y schemas con tipos, requireds y formatos donde aplique."</em></p>
+      <p><em>"Un consejo que no es requisito: cuando lo tengan, p&eacute;guenlo en editor.swagger.io. Si abre sin errores, el yaml es v&aacute;lido; si se queja, les dice en qu&eacute; l&iacute;nea. Es la forma m&aacute;s barata de no entregar algo roto."</em></p>
+    </aside>
+  </section>
+
+  <!-- §9.3: Constraints y entregable -->
+  <section>
+    <h2>Constraints y entregable</h2>
+    <div class="comparison-2col" style="margin-top: 14px; align-items: stretch;">
+      <div class="bg-secondary-card" style="border-left: 4px solid var(--accent); padding: 14px;">
+        <h3 style="color: var(--accent); font-size: 0.95em; margin-bottom: 8px;">Constraints</h3>
+        <ul style="margin: 0; padding-left: 18px; font-size: 0.75em; line-height: 1.7;">
+          <li>Trabajo <strong>individual</strong>.</li>
+          <li>Una sola conversaci&oacute;n de IA, de principio a fin.</li>
+          <li>La herramienta es libre: cualquier chat sirve.</li>
+        </ul>
+      </div>
+      <div class="bg-secondary-card" style="border-left: 4px solid var(--accent-secondary); padding: 14px;">
+        <h3 style="color: var(--accent-secondary); font-size: 0.95em; margin-bottom: 8px;">Entregable</h3>
+        <p style="font-size: 0.75em; margin-bottom: 8px;">Una carpeta <code>tp2/</code> nueva en tu repositorio, con tres archivos:</p>
+        <ul style="margin: 0; padding-left: 18px; font-size: 0.75em; line-height: 1.7;">
+          <li><code>openapi.yaml</code> &mdash; el contrato.</li>
+          <li><code>prompts.md</code> &mdash; la secuencia de prompts en orden, con una anotaci&oacute;n breve por prompt.</li>
+          <li><code>README.md</code> &mdash; el informe: qu&eacute; API elegiste, qu&eacute; decidiste vos, qu&eacute; sali&oacute; mal y c&oacute;mo lo corregiste.</li>
+        </ul>
+      </div>
+    </div>
+    <div style="max-width: 44em; margin: 18px auto 0; padding: 12px 16px; background: var(--bg-secondary); border-radius: 6px; border-left: 4px solid var(--accent);">
+      <p style="font-size: 0.78em; margin: 0;">Mismo repositorio de siempre. Hay un <code>tp2/</code> resuelto en el repo de referencia, con la API de proyectos y tareas que usamos hoy.</p>
+    </div>
+    <aside class="notes">
+      <p><u>Constraints + entregable, mismo formato que el TP 1. El prompts.md es donde se ve el proceso y pesa tanto como el yaml.</u></p>
+      <p><em>"Constraints. Individual, cada uno el suyo. Una sola conversaci&oacute;n de IA de principio a fin, as&iacute; toda la historia queda en un hilo y el registro se lee como un proceso y no como pedazos sueltos. Y la herramienta es libre: el chat que prefieran. El prompt que vieron hoy no depende de ning&uacute;n producto en particular."</em></p>
+      <p><em>"Entregable. No hay repositorio nuevo: es el mismo de siempre. Adentro crean una carpeta tp2 con tres archivos. El openapi.yaml, que es el contrato. Un prompts.md con la secuencia en orden y una anotaci&oacute;n breve por prompt diciendo qu&eacute; buscaban con cada uno. Y un README.md con el informe: qu&eacute; API eligieron, qu&eacute; decidieron ustedes y no el modelo, qu&eacute; sali&oacute; mal y c&oacute;mo lo corrigieron."</em></p>
+      <p><em>"Igual que en el TP anterior, esas dos &uacute;ltimas secciones del README son las que m&aacute;s miro. Qu&eacute; decidieron ustedes muestra d&oacute;nde no aceptaron el default del modelo, y en un contrato eso es muy concreto: por qu&eacute; anidaste en vez de filtrar, por qu&eacute; 404 y no 400, qu&eacute; campo dejaste opcional. Y qu&eacute; sali&oacute; mal muestra que leyeron el yaml en vez de darlo por bueno."</em></p>
+      <p><em>"En el repo de referencia dej&eacute; un tp2 resuelto, con la misma API de proyectos y tareas que usamos hoy. Est&aacute; para que vean la forma y el nivel de detalle, no para que lo copien: el dominio lo eligen ustedes."</em></p>
+    </aside>
+  </section>
+
+  <!-- §9.4: Cierre de la clase — el contrato tiene archivo -->
   <section>
     <p class="big-question" style="font-size: 1.4em;">
       Ustedes no tipearon nada.<br>
@@ -2495,14 +2588,14 @@ endpoints:
       El rol &mdash; supervisor arquitect&oacute;nico &mdash; sobrevivi&oacute; la mudanza al servidor.
     </p>
     <p style="margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--bg-secondary); font-size: 0.7em; color: var(--text-muted); text-align: center; max-width: 38em; margin-left: auto; margin-right: auto;">
-      <strong style="color: var(--text-muted);">Pr&oacute;xima clase:</strong> tomamos este yaml y se lo damos a una IA local para que escriba la implementaci&oacute;n.
+      <strong style="color: var(--text-muted);">Pr&oacute;xima clase:</strong> tomamos un <code>openapi.yaml</code> y se lo damos a una IA local para que escriba la implementaci&oacute;n.
     </p>
     <aside class="notes">
       <p><strong>Treinta segundos. Voz baja, mirar al aula, dejar las frases respirar entre fragments.</strong></p>
-      <p><u>Cierre del demo y de la clase. Cierra el espejo con semana 02 y bridge a semana 4.</u></p>
-      <p><em>"Lo que acaba de pasar: ustedes no tipearon nada. Lo que dirigieron fue el contrato. Y ahora tiene archivo &mdash; un openapi.yaml que pueden bajar, versionar, dictar de nuevo, pasar a otro modelo."</em></p>
-      <p><em>"Eso es exactamente lo mismo que hicimos la semana pasada con el frontend. Cambi&oacute; el terreno, no el rol. El supervisor arquitect&oacute;nico sobrevivi&oacute; la mudanza al servidor."</em></p>
-      <p><em>"La pr&oacute;xima clase tomamos exactamente este yaml y se lo damos a una IA local para que escriba la implementaci&oacute;n. Nos vemos."</em></p>
+      <p><u>Cierre de la clase. Cierra el espejo con semana 02 y hace de bridge a la semana 4. Viene despu&eacute;s de la consigna a prop&oacute;sito: le da sentido al TP en vez de dejarlo como tarea suelta.</u></p>
+      <p><em>"Volvamos un segundo a lo que pas&oacute; en el demo: ustedes no tipearon nada. Lo que dirigieron fue el contrato. Y ahora tiene archivo &mdash; un openapi.yaml que se puede bajar, versionar, dictar de nuevo, pasar a otro modelo."</em></p>
+      <p><em>"Eso es exactamente lo mismo que hicimos la semana pasada con el frontend. Cambi&oacute; el terreno, no el rol. El supervisor arquitect&oacute;nico sobrevivi&oacute; la mudanza al servidor. Y el trabajo pr&aacute;ctico que acabo de darles es ese mismo movimiento, hecho por ustedes y sobre un dominio que eligen ustedes."</em></p>
+      <p><em>"La pr&oacute;xima clase tomamos un openapi.yaml y se lo damos a una IA local para que escriba la implementaci&oacute;n. O sea que lo que escriban esta semana no muere en la entrega: es la entrada de lo que viene. Nos vemos."</em></p>
     </aside>
   </section>
 

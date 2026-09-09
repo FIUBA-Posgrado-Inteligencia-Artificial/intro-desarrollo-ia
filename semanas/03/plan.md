@@ -170,6 +170,22 @@ NB: omitido un hook tipo big-question (era redundante con la pregunta de semana 
 
 **Animations:** copiar `clickable-steps.js` desde `semanas/01/slides/`.
 
+## Task 8b — §9 Trabajo Práctico 2
+
+**Inputs:** spine §9, source `09-trabajo-practico-2.md`, semana 02 §7 como referencia de forma (divider + tema + constraints/entregable).
+
+**Slide arc (4 slides):**
+1. Section divider — `Trabajo Práctico 2`, con la bajada de "individual / arranca acá, se termina en casa".
+2. La consigna — dominio libre con dos recursos que se relacionen; los 4 requisitos del yaml en `s4-three-card` (que admite 4 tarjetas). Dejar explícito que no hay que implementar nada.
+3. Constraints y entregable — `comparison-2col`, mismo formato que semana 02 §7.3. Cierra con el aviso de que hay un `tp2/` resuelto en el repo de referencia.
+4. Cierre de la clase — movido desde §8. Va **después** de la consigna a propósito: enmarca el TP y lo ata a la semana 4.
+
+**Nota:** el ejemplo resuelto vive en `semanas/00/source_material/apellido-iisaia/tp2/` (`openapi.yaml` + `prompts.md` + `README.md`). Si cambia la consigna, ese ejemplo tiene que cambiar con ella.
+
+**Patterns:** `section-divider`, `s4-three-card`, `comparison-2col`.
+
+**Animations:** none new.
+
 ---
 
 ## Task 9 — Assembly
