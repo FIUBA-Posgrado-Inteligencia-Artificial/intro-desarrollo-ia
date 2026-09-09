@@ -8,7 +8,7 @@ La pregunta no es si funciona; es bajo qué convención está escrito.
 
 ## HTTP es el cómo; REST es el qué
 
-HTTP es el transporte: define cómo viaja un pedido y cómo viene la respuesta. REST es una *convención* sobre *qué* se transporta y cómo se nombra. No es la única: existen GraphQL, que arma una sola path y deja que el cliente declare qué campos quiere, y existe RPC, que expone funciones con nombre en lugar de recursos. Pero la mayoría de las APIs públicas, y de los proyectos en los que vas a dictar contrato, hablan REST. Por eso el resto de esta semana lo asume.
+HTTP es el transporte: define cómo viaja un pedido y cómo viene la respuesta. REST es una *convención* sobre *cómo usar* ese transporte: qué se expone como recurso y qué operación viaja en el method. No agrega nada al cable; ordena el uso de lo que HTTP ya define. No es la única: existen GraphQL, que arma una sola path y deja que el cliente declare qué campos quiere, y existe RPC, que expone funciones con nombre en lugar de recursos. Pero la mayoría de las APIs públicas, y de los proyectos en los que vas a dictar contrato, hablan REST. Por eso el resto de esta semana lo asume.
 
 ## Todo es un recurso
 

@@ -64,10 +64,10 @@ Cuando le pedís a la IA que te arme un endpoint, deberías poder especificar el
 
 ## Vago vs. específico
 
-Comparemos dos prompts para la misma tarea.
+Comparemos dos prompts que piden lo mismo: un endpoint para guardar tareas.
 
 ```
-hace una API para guardar tareas
+hacé un endpoint para guardar tareas
 ```
 
 ```

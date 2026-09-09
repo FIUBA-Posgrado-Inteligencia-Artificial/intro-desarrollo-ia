@@ -1,16 +1,18 @@
 # Spine — Semana 03: Arquitectura Backend y Datos
 
-**Whole-week through-line:** La semana 02 te enseñó a nombrar las piezas del frontend para dirigir a la IA cuando el código vive en el navegador. Esta semana es el reflejo: mismo rol (supervisor arquitectónico), mismo mecanismo (vocabulario → especificación → código auditable), terreno nuevo (servidor). HTTP, REST, paths, datos y errores son el vocabulario backend que te permite seguir dirigiendo cuando el código se muda al servidor. La clase termina cerrando el espejo en vivo: el profesor escribe un openapi.yaml en ChatGPT canvas mientras los alumnos leen endpoint por endpoint el contrato del §4 hecho archivo, y ven el yaml renderizado en Swagger UI.
+**Whole-week through-line:** La semana 02 te enseñó a nombrar las piezas del frontend para dirigir a la IA cuando el código vive en el navegador. Esta semana es el reflejo: mismo rol (supervisor arquitectónico), mismo mecanismo (vocabulario → especificación → código auditable), terreno nuevo (servidor). HTTP, REST, paths, datos y errores son el vocabulario backend que te permite seguir dirigiendo cuando el código se muda al servidor. La clase termina cerrando el espejo en vivo: el profesor le dicta el contrato del §4 a una IA, que devuelve un openapi.yaml; los alumnos lo leen endpoint por endpoint y lo ven renderizado en Swagger UI.
 
 ## Section 1: Backend y el supervisor arquitectónico
 **Source material:** `source_material/01-backend-y-el-supervisor.md`
-**Through-line:** El rol de supervisor arquitectónico no cambia entre frontend y backend; lo que cambia es el terreno. Esta sección establece la simetría con semana 02 y da el mapa de las seis piezas que se desarman en el resto de la clase.
-**Key analogy:** El espejo de la semana 02. Frontend ↔ backend como las dos mitades simétricas de la misma habilidad: nombrar piezas para dirigir a una IA.
+**Through-line:** Primero fijar qué es un backend y qué formas toma, después acotar el foco al servidor web. El rol de supervisor arquitectónico no cambia entre frontend y backend; lo que cambia es el terreno. Esta sección establece la simetría con semana 02 y da el mapa de las seis piezas que se desarman en el resto de la clase.
+**Key analogy:** El espejo de la semana 02, en dos niveles. La apertura espeja la slide de tipos de frontend (§1.1 de semana 02): definición + las formas que toma + acote del foco. Y el arco entero espeja el rol: frontend ↔ backend como las dos mitades simétricas de la misma habilidad, nombrar piezas para dirigir a una IA.
 **What students walk away knowing:**
+- Qué es un backend y que "backend" no quiere decir "servidor web": hay procesos programados, workers de cola y backends embebidos sin red.
+- Lo que las cuatro formas comparten: custodian los datos y ejecutan las reglas que no se pueden saltear desde afuera. De ahí sale el peso del rol.
 - El rol "supervisor arquitectónico" sobrevive al cambio de capa; lo que cambia es el vocabulario.
 - El mapa de la clase: HTTP → REST → endpoints → datos → errores → OpenAPI (el contrato escrito).
-**Animations / interactive:** None new. Considerar reutilizar `pipeline-roadmap` (semana 01) para mostrar el arco de las 6 piezas y volver a iluminarlas al abrir cada sección.
-**Slide budget:** 3 slides (espejo → roadmap → disclaimer). Sin hook ni "tres cosas que cambian": ambos pre-cargan vocabulario backend que el alumno todavía no tiene; cada consecuencia (persistencia, contratos, leer la respuesta) se motiva en su propia sección más adelante.
+**Animations / interactive:** Diagrama interactivo de la anatomía de una request (`backend-flow.js`), seis pasos con branch 2xx/5xx. El `piece-roadmap` se vuelve a iluminar al abrir cada sección.
+**Slide budget:** 4 slides (qué es un backend → espejo → anatomía de una request → disclaimer). Sin hook tipo big-question ni "tres cosas que cambian": ambos pre-cargan vocabulario backend que el alumno todavía no tiene; cada consecuencia (persistencia, contratos, leer la respuesta) se motiva en su propia sección más adelante. El acote al servidor web va en el speaker note, no en el texto visible.
 
 ## Section 2: Cliente, servidor y HTTP
 **Source material:** `source_material/02-cliente-servidor-y-http.md`
@@ -25,7 +27,7 @@
 
 ## Section 3: REST como estilo
 **Source material:** `source_material/03-rest-como-estilo.md`
-**Through-line:** HTTP es el cómo (transporte); REST es el qué (convención sobre qué se transporta y cómo se nombra). Todo es recurso, las URLs nombran recursos no acciones, y cuatro reglas (plural, jerarquía, idempotencia, stateless) ordenan cómo se piden las cosas.
+**Through-line:** HTTP es el cómo (transporte); REST es el qué (convención sobre cómo usar ese transporte: qué se expone como recurso y qué operación viaja en el method). Todo es recurso, las URLs nombran recursos no acciones, y cuatro reglas (plural, jerarquía, idempotencia, stateless) ordenan cómo se piden las cosas.
 **Hook:** Querés borrar la tarea 17 del proyecto 4. ¿`DELETE /projects/4/tasks/17` o `POST /borrar-tarea?id=17&proyecto=4`? Las dos son HTTP válido. Una sola es REST.
 **What students walk away knowing:**
 - REST es una convención (no la única — GraphQL y RPC existen), y la mayoría de las APIs que vas a dictar la usan.
@@ -41,7 +43,7 @@
 **Key analogy:** Endpoint con contrato ↔ componente con props/state (semana 02). El "átomo dictable" del frontend tiene su gemelo del lado del servidor: una pieza chica, con bordes claros, que pegás a la IA sin tener que aclarar nada más.
 **What students walk away knowing:**
 - Las cinco piezas de un endpoint y por qué cada una corresponde a una decisión que alguien tiene que tomar (o la IA la toma sin avisarte).
-- Mantra path/query/body: path identifica, query modifica, body transporta el contenido nuevo.
+- Mantra path/query/body: path identifica, query ajusta el pedido, body transporta el contenido nuevo.
 - Cómo se ve un bloque de contrato concreto y por qué es la unidad mínima dictable que cierra el espejo con semana 02.
 **Animations / interactive:** None new. `code-walkthrough` con highlights por línea sobre el bloque de contrato (method, path, entrada, salida, errores, cada uno se ilumina). Posible variante con `clickable-steps` reutilizando el componente de semana 01.
 **Slide budget:** 8–10
@@ -79,11 +81,22 @@
 **Animations / interactive:** None new. `comparison-2col` con step-through highlights mapeando línea-a-línea bloque del §4 ↔ openapi.yaml.
 **Slide budget:** 3 slides (apertura → side-by-side → por qué importa).
 
-## Section 8: Demo en vivo — canvas escribe el openapi.yaml
+## Section 8: Demo en vivo — el modelo escribe el openapi.yaml
 **Source material:** `source_material/08-demo-en-vivo.md`
-**Through-line:** Coreografía del cierre. El profesor pega un prompt que dicta el contrato del §4 (projects/tasks) y le pide a ChatGPT canvas el openapi.yaml. Lee el yaml endpoint por endpoint mapeando al §4, agrega un endpoint en vivo, edita a mano dentro del canvas, y al final pega el yaml en editor.swagger.io para mostrar el render con docs interactivas y un "Try it" funcional. La cadena: contrato → archivo → docs renderizadas, en vivo.
+**Through-line:** Coreografía del cierre. El profesor pega un prompt que dicta el contrato del §4 (projects/tasks) en un chat de IA cualquiera y recibe el openapi.yaml. Lee el yaml endpoint por endpoint mapeando al §4, pide un endpoint más desde el chat, y al final pega el yaml en editor.swagger.io para mostrar el render con docs interactivas, un "Try it" funcional y una edición a mano en vivo. El demo no depende de ninguna función de editor colaborativo. La cadena: contrato → archivo → docs renderizadas, en vivo.
 **What students walk away knowing:**
 - El demo no agrega un concepto nuevo; cierra el espejo y deja al alumno con ganas de tomar el yaml y darlo a una IA local en semana 4.
 - (Apropiación visceral) Lo que ustedes dictaron fue el contrato; ahora tiene archivo. El rol — supervisor arquitectónico — sobrevivió la mudanza al servidor.
 **Animations / interactive:** None new. Reusa `clickable-steps` (mismo componente del §8 anterior) para los 6 beats. `section-divider` para apertura.
 **Slide budget:** 5 slides (divider → 5 requisitos + counter → plantilla del prompt → 6 beats → cierre + bridge a semana 4).
+
+## Section 9: Trabajo Práctico 2
+**Source material:** `source_material/09-trabajo-practico-2.md`
+**Through-line:** El alumno acaba de ver el movimiento entero en el demo; ahora lo hace sobre un dominio propio. La consigna no agrega concepto nuevo: convierte el recorte de la clase —el contrato, no la implementación— en una entrega.
+**What students walk away knowing:**
+- Qué entregar (`openapi.yaml` + `prompts.md` + `README.md` en una carpeta `tp2/`) y bajo qué constraints (individual, una sola conversación, herramienta libre).
+- Los cuatro requisitos del yaml son los mismos que se le pidieron al del demo: tres methods, jerarquía de recursos, un error documentado, schemas tipados.
+- Que el yaml no muere en la entrega: es la entrada de la semana 4.
+**Animations / interactive:** None. Reusa `section-divider`, `s4-three-card` y `comparison-2col`.
+**Slide budget:** 4 slides (divider → consigna + 4 requisitos → constraints y entregable → cierre de la clase). El cierre de la clase se movió acá desde §8: viene después de la consigna a propósito, para que el TP quede enmarcado y no suelto.
+

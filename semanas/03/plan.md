@@ -11,7 +11,7 @@ Implementation plan derived from `spine.md`. Through-line A (espejo backend de s
   - `<aside class="notes">` per slide, three-format speaker notes.
   - Trailing `<script>` block(s) only if the section needs animation init.
 - **Shared CSS first.** Prefer existing classes from `_config/theme/components.css`: `.bg-secondary-card`, `.bg-code-card`, `.comparison-2col`, `.flow-step`, `.flow-arrow`, `.pipe-grid`, `.pipe-node`, `.pipe-arrow`, `.pipeline-box`, `.pipeline-arrow`, `.chat-mockup` (+ `.chat-bubble`, `.chat-cursor`), `.stage-box`. Only invent scoped CSS when no existing class fits.
-- **Shared roadmap class.** A `.piece-roadmap` (defined once in the page-level scaffold) reuses `.pipe-node` / `.pipe-arrow` styling and adds `.active-1` … `.active-6` selectors that highlight one of the six pieces (HTTP, REST, endpoints, datos, errores, salto). Section openers (§2 onward) re-render the roadmap with the right `.active-N` to keep the espejo arc visible.
+- **Shared roadmap class.** A `.piece-roadmap` (defined once in the page-level scaffold) reuses `.pipe-node` / `.pipe-arrow` styling and adds `.active-1` … `.active-6` selectors that highlight one of the six pieces (HTTP, REST, endpoints, datos, errores, OpenAPI). Section openers (§2 onward) re-render the roadmap with the right `.active-N` to keep the espejo arc visible.
 - **Voice and didactic rules** per `tools/skills/slide-generation/voice-and-didactics.md`. No bullet-only slides. Three-format notes: `<strong>` actions / `<u>` description / `<em>` script (between quotes, conversational). One `<em>` block per fragment-press.
 - **No emojis. No "diplomatura". No "Vibe Coding". No "payoff" — usar "recompensa" o "sentido". Title slide h1 is the topic, not "Semana NN".**
 
@@ -25,17 +25,18 @@ Implementation plan derived from `spine.md`. Through-line A (espejo backend de s
 1. Copy `shared/templates/week-template.html` to `slides/index.html`.
 2. Title: `Semana 03 — Arquitectura Backend y Datos`.
 3. Title slide: `h1 = Arquitectura Backend y Datos`, subtitle = `Vocabulario para dirigir a la IA del otro lado del cable`, muted = `Introducción al desarrollo de software asistido por IA`.
-4. Add a per-page `<style>` block with the `.piece-roadmap` rules: a thin row using `.pipe-node` / `.pipe-arrow`, with selectors `.piece-roadmap.active-1 …` through `.active-6` that highlight the corresponding node and dim the rest. Six nodes labelled: HTTP, REST, Endpoints, Datos, Errores, Salto.
+4. Add a per-page `<style>` block with the `.piece-roadmap` rules: a thin row using `.pipe-node` / `.pipe-arrow`, with selectors `.piece-roadmap.active-1 …` through `.active-6` that highlight the corresponding node and dim the rest. Six nodes labelled: HTTP, REST, Endpoints, Datos, Errores, OpenAPI.
 5. Leave a placeholder block per section: `<!-- ============= §N — Title ============= --> <!-- INJECT_SECTION_N --> <!-- /§N -->`.
 
 ## Task 1 — §1 Backend y el supervisor arquitectónico (apertura)
 
 **Subagent dispatch.** Inputs: spine §1 entry, source `01-backend-y-el-supervisor.md`, semana 02 §1 as shape reference.
 
-**Slide arc (3 slides):**
-1. Mismo rol, otro terreno — `comparison-2col`: Frontend (semana 02) ↔ Backend (semana 03). Esto materializa la analogía clave y abre la sección.
-2. Roadmap de las seis piezas — `piece-roadmap` con seis nodos, fragmentos para revelarlos uno por uno + arrow.
-3. A qué prestamos atención hoy — `comparison-2col`: lo que NO es / lo que SÍ es. Cierra con la frase del source: "Volvé al rol cuando dudes: sos supervisor arquitectónico también del lado del servidor."
+**Slide arc (4 slides):**
+1. Qué es un backend — definición + las cuatro formas que toma (servidor web / proceso programado / worker de cola / embebido) en `consequence-row`, la primera en accent y el resto en muted. Fragment de cierre con lo que las cuatro comparten, y el acote al servidor web en el speaker note. Espejo exacto de la slide de tipos de frontend de semana 02 §1.1 — misma estructura, mismo sizing (1.1em / 1.05em / tarjetas heredando `.consequence-row p`).
+2. Mismo rol, otro terreno — `comparison-2col`: Frontend (semana 02) ↔ Backend (semana 03). Esto materializa la analogía clave.
+3. Anatomía de una request — diagrama interactivo `backend-flow.js`, seis pasos con branch 2xx/5xx. Las cinco piezas que viven dentro del servidor; OpenAPI no aparece porque describe el contrato, no participa del request lifecycle.
+4. A qué prestamos atención hoy — `comparison-2col`: lo que NO es / lo que SÍ es. Cierra con la frase del source: "Volvé al rol cuando dudes: sos supervisor arquitectónico también del lado del servidor."
 
 NB: omitido un hook tipo big-question (era redundante con la pregunta de semana 02) y omitida una slide de "tres cosas que cambian" (pre-cargaba vocabulario backend antes de que el alumno tuviera contexto). Cada una de esas tres consecuencias se motiva en su sección propia más adelante.
 
@@ -91,7 +92,7 @@ NB: omitido un hook tipo big-question (era redundante con la pregunta de semana 
 1. Section opener: `Pieza 3 — Endpoints` con `piece-roadmap` en `active-3`.
 2. Hook: "Le decís a la IA 'hacé un endpoint para crear una tarea' y te devuelve trescientas líneas." Listar las 10 decisiones invisibles que tomó la IA en una columna; del otro lado, el contrato que las explicita. `comparison-2col`.
 3. Un path es una promesa — las cinco piezas con un slide tipo pipeline horizontal: method → path → schema-in → schema-out → códigos posibles. Reuse `.flow-step` o crear `.s4-piece` con highlight por fragmento.
-4. Path / Query / Body — mantra ("path identifica, query modifica, body transporta"). `comparison-2col` o tres-card con ejemplos.
+4. Path / Query / Body — mantra ("path identifica, query ajusta el pedido, body transporta"). Un solo request arriba con las tres zonas coloreadas + `s4-three-card` explicando cada una; los colores del bloque y de las tarjetas tienen que coincidir. Evitar "modifica" para la query: choca con el PATCH de §2.
 5. El controller atiende la promesa — frase: vos no escribís controllers, los especificás. Tarjeta única.
 6. El bloque de contrato — `code-walkthrough` con el pseudocódigo del source completo (POST /projects/{id}/tasks con sus salidas 201/400/404). `data-line-numbers` para resaltar primero el method+path, después la entrada, después salida 201, después las salidas de error.
 7. **Slide de la analogía clave** — espejo con semana 02: "Endpoint con contrato ↔ componente con props/state". `comparison-2col`: a la izquierda el componente con props tipadas (semana 02), a la derecha el endpoint con contrato (esta clase). Pie: "El átomo dictable también tiene gemelo del lado del servidor."
@@ -137,39 +138,53 @@ NB: omitido un hook tipo big-question (era redundante con la pregunta de semana 
 
 **Animations:** none new.
 
-## Task 7 — §7 De lo local al stack (salto)
+## Task 7 — §7 OpenAPI: el contrato escrito
 
-**Subagent dispatch.** Inputs: spine §7, source `07-de-lo-local-al-stack.md`.
+**Subagent dispatch.** Inputs: spine §7, source `07-openapi-el-contrato-escrito.md`.
 
-**Slide arc (7–8 slides):**
-1. Section opener: `Pieza 6 — Salto` con `piece-roadmap` en `active-6`.
-2. Hook: "Hasta ahora todo pasaba en una pestaña." Frase grande, sola. La pestaña no aguanta un servidor.
-3. Por qué Canvas no alcanza — tres-card o `comparison-2col` con tres elementos: proceso / puerto / sistema de archivos.
-4. Por qué CLI antes que IDE — tres razones del source (transparencia / foco didáctico / continuidad con semana 4). `comparison-2col` o tarjetas.
-5. El stack del demo — diagrama horizontal o pipeline-box: Python · FastAPI · SQLite · Uvicorn · venv. Cada caja con frase de una línea explicativa al hover (tooltip ya viene en `.pipeline-box`).
-6. FastAPI es una elección — slide con `data-table` o tarjetas: alternativas (Node+Express / Django / Flask / Go / Rails). Frase de cierre: "El punto no es aprenderlas. Es saberlas."
-7. Tarea para semana 4 — slide tipo checklist con los 5 ítems del source (Python ≥3.11, Node ≥18, `npm install -g @anthropic-ai/claude-code`, `claude --version`, avisar si falla). Bloque de código con los comandos exactos.
-8. Vago vs específico — bloque del source con la estructura del proyecto Python.
+**Slide arc (3 slides):**
+1. Section opener: `Pieza 6 — OpenAPI (el contrato escrito)` con `piece-roadmap` en `active-6`. Lo que veníamos llamando "contrato" tiene nombre y archivo.
+2. El bloque de contrato en dos formatos — `comparison-2col`: a la izquierda el texto informal dictado en §4, a la derecha el equivalente en OpenAPI 3.1. La columna izquierda queda fija; los cinco highlights recorren el yaml (method → path → `requestBody` → `responses '201'` → `'400'`/`'404'`).
+   - **Cuidado con el layout:** el `white-space: pre-wrap` global del `<head>` parte el gutter de números de línea cuando la columna es angosta. El slide trae un `<style>` scopeado (`.s7-sbs`) que lo revierte. Mantener las líneas del yaml cortas para que no haga falta wrap.
+   - **Un solo `data-line-numbers` por slide.** Dos bloques con highlights progresivos generan dos secuencias de fragments independientes y la coreografía de las notas deja de coincidir.
+3. Por qué importa que sea un archivo — tres tarjetas: menos ambigüedad, codegen real (Swagger UI, clientes, mocks, tests), durabilidad versionada.
 
-**Patterns:** `comparison-2col`, `pipeline-box` con tooltips, `code-walkthrough`, tarjetas.
+**Patterns:** `comparison-2col`, `code-walkthrough` con highlights progresivos.
 
 **Animations:** none new.
 
 ## Task 8 — §8 Demo en vivo (scaffolding del cierre)
 
-**Subagent dispatch.** Inputs: spine §8, source `08-demo-en-vivo.md`. **Importante:** sección de scaffolding mínimo — la animación real es el demo en vivo. No inventar dominio si no está decidido; usar plantilla con placeholders.
+**Subagent dispatch.** Inputs: spine §8, source `08-demo-en-vivo.md`. **Importante:** sección de scaffolding mínimo — la animación real es el demo en vivo.
 
-**Slide arc (4–6 slides):**
+**Restricción de herramienta:** el demo no depende de ninguna función de editor colaborativo. Cualquier chat de IA que devuelva el yaml en un bloque copiable sirve; `editor.swagger.io` es donde el archivo se vuelve tangible y editable. No nombrar productos de canvas en el deck.
+
+**Slide arc (5 slides):**
 1. Section divider — `Demo en vivo` (clase `section-divider`).
-2. Lo que se va a mostrar — la lista de los 5 requisitos del source (3 methods, foreign key visible, camino de error 4xx, frontend mínimo, dominio NO-trivial). `comparison-2col` o lista densa transformada en tarjetas.
-3. La plantilla de contrato — `code-walkthrough` con la plantilla del source (stack + tablas + endpoints + frontend). Pre-fragmentar para revelar bloque por bloque mientras el profesor la dicta en vivo.
+2. El primer prompt — `code-walkthrough` con la plantilla del source. Tres highlights: framing, recursos, endpoints.
+3. Lo que el yaml tiene que tener — los 5 requisitos del source (3 methods, jerarquía de recursos, una respuesta de error, schemas tipados, iteración en vivo) como tarjetas.
 4. Beats del demo — `clickable-steps` con los 6 beats numerados. Texto corto en cada paso; el detalle vive en la lectura previa del profesor. (Reuse `clickable-steps.js` de semana 01: copiar a `slides/clickable-steps.js`.)
-5. Cierre — slide de 30 segundos final: "Ustedes no tipearon nada. Lo que dirigieron fue el contrato." Espejo cerrado con semana 02. Una sola frase grande.
-6. (Opcional) Agradecimiento o "preguntas?" — sección dividida.
+5. Cierre — slide de 30 segundos final: "Ustedes no tipearon nada. Lo que dirigieron fue el contrato." Espejo cerrado con semana 02, bridge a semana 4.
 
 **Patterns:** `section-divider`, `code-walkthrough`, `clickable-steps` (reuse JS desde semana 01).
 
 **Animations:** copiar `clickable-steps.js` desde `semanas/01/slides/`.
+
+## Task 8b — §9 Trabajo Práctico 2
+
+**Inputs:** spine §9, source `09-trabajo-practico-2.md`, semana 02 §7 como referencia de forma (divider + tema + constraints/entregable).
+
+**Slide arc (4 slides):**
+1. Section divider — `Trabajo Práctico 2`, con la bajada de "individual / arranca acá, se termina en casa".
+2. La consigna — dominio libre con dos recursos que se relacionen; los 4 requisitos del yaml en `s4-three-card` (que admite 4 tarjetas). Dejar explícito que no hay que implementar nada.
+3. Constraints y entregable — `comparison-2col`, mismo formato que semana 02 §7.3. Cierra con el aviso de que hay un `tp2/` resuelto en el repo de referencia.
+4. Cierre de la clase — movido desde §8. Va **después** de la consigna a propósito: enmarca el TP y lo ata a la semana 4.
+
+**Nota:** el ejemplo resuelto vive en `semanas/00/source_material/apellido-iisaia/tp2/` (`openapi.yaml` + `prompts.md` + `README.md`). Si cambia la consigna, ese ejemplo tiene que cambiar con ella.
+
+**Patterns:** `section-divider`, `s4-three-card`, `comparison-2col`.
+
+**Animations:** none new.
 
 ---
 

@@ -18,7 +18,7 @@ Los **query params** modifican una lectura. Aparecen después de un `?`, y se us
 
 El **body** lleva el payload de una creación o actualización. Cuando hacés POST a `/projects/{id}/tasks`, el `id` viaja en el path porque identifica al proyecto, pero los datos de la tarea nueva (su título, su fecha de vencimiento) viajan en el body, normalmente como JSON. El body es el contenido de la operación.
 
-La regla mental: path identifica, query modifica, body transporta el contenido nuevo.
+La regla mental: path identifica, query ajusta el pedido, body transporta el contenido nuevo.
 
 ## El controller: quién atiende la promesa
 

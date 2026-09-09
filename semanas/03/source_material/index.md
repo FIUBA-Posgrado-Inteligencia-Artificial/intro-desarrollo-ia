@@ -13,10 +13,13 @@ Este es el material fuente de la clase de Semana 3. La presentación reveal.js s
 | 5 | [05-datos-relaciones-vs-documentos.md](05-datos-relaciones-vs-documentos.md) | SQL vs NoSQL: cuándo conviene cada uno | Anatomía (~15 min) |
 | 6 | [06-errores-y-observabilidad.md](06-errores-y-observabilidad.md) | Leer fallas: 4xx, 5xx, logs, stack traces | Anatomía (~10 min) |
 | 7 | [07-openapi-el-contrato-escrito.md](07-openapi-el-contrato-escrito.md) | OpenAPI como formalización del contrato del §4 | Cierre conceptual (~10 min) |
-| 8 | [08-demo-en-vivo.md](08-demo-en-vivo.md) | Guion del demo: ChatGPT canvas escribe el openapi.yaml; render en Swagger UI | Demo (~25 min) |
+| 8 | [08-demo-en-vivo.md](08-demo-en-vivo.md) | Guion del demo: el modelo escribe el openapi.yaml; render en Swagger UI | Demo (~25 min) |
+| 9 | [09-trabajo-practico-2.md](09-trabajo-practico-2.md) | Consigna del TP 2: dictarle a una IA el contrato de una API propia | TP 2 (~15 min) |
 
 ## Hilo conductor
 
 Esta clase enseña vocabulario backend para que el alumno pueda **dirigir** una IA cuando el código que se genera ya no vive en una pestaña del navegador. Es el espejo simétrico de la semana 02: igual que ahí aprendiste a nombrar las piezas del frontend, acá aprendés a nombrar las piezas del backend — methods, paths, contratos, datos, errores — y a pedirlas con precisión.
 
-La clase cierra formalizando ese vocabulario: el contrato del §4 tiene nombre y archivo — **OpenAPI** — y el demo en vivo lo muestra apareciendo en pantalla mientras el profesor lo dicta a ChatGPT canvas. Los alumnos no tipean código, pero salen viendo el yaml renderizado en Swagger UI.
+La clase cierra formalizando ese vocabulario: el contrato del §4 tiene nombre y archivo — **OpenAPI** — y el demo en vivo lo muestra apareciendo en pantalla mientras el profesor se lo dicta a una IA. Los alumnos no tipean código, pero salen viendo el yaml renderizado en Swagger UI.
+
+Después del demo se entrega el **TP 2**, que es el mismo movimiento hecho por el alumno sobre un dominio que elige él. El cierre de la clase va al final, después de la consigna: le da sentido al TP en vez de dejarlo como tarea suelta, porque el yaml que escriban es la entrada de la semana 4.

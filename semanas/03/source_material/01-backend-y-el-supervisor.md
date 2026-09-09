@@ -1,5 +1,20 @@
 # Backend y el supervisor arquitectónico
 
+## Qué es un backend
+
+El **backend** es la parte de un sistema que el usuario no ve: ejecuta la lógica, guarda el estado y hace cumplir las reglas. Nadie lo usa de forma directa. Siempre alguien le pide algo —una interfaz, otro programa, o simplemente un reloj que dice "son las tres de la mañana, arrancá"— y él responde. Es exactamente lo que la semana pasada quedaba nombrado como "los datos y las reglas del negocio viven detrás".
+
+Backend no quiere decir "servidor web". Toma varias formas:
+
+- **Servidor web**: espera pedidos por red y contesta de a uno. Detrás de casi todo sitio o app.
+- **Proceso programado**: nadie le pide nada, arranca solo a una hora fija. Facturación de fin de mes, reportes de la madrugada.
+- **Worker de cola**: toma trabajos de una fila y los procesa de a uno. Mandar mails, convertir videos.
+- **Embebido**: sin red y sin servidor, vive dentro de la misma aplicación. Una app de escritorio que guarda todo en un archivo local también tiene backend.
+
+Las cuatro hacen lo mismo: custodian los datos y ejecutan las reglas que nadie puede saltear desde afuera. Esa última parte es la que le da peso al rol. Una regla que vive en el frontend se esquiva abriendo las herramientas del navegador; una que vive en el backend, no. Por eso el backend es donde terminan las decisiones que de verdad importan.
+
+Vamos a trabajar sobre el servidor web por dos razones: es la forma más común con diferencia, y es la única que obliga a definir un contrato explícito con quien le habla. Ese contrato es el corazón de todo lo que sigue.
+
 Si una IA puede levantar un servidor en treinta segundos, ¿por qué seguimos aprendiendo qué es un `POST` o cómo se modela una tabla? La respuesta es la misma que la semana pasada: el cuello de botella no es la sintaxis, es la decisión. Y ahora la decisión vive en un servidor.
 
 La semana pasada nombramos las piezas del frontend para dirigir lo que la IA escribe en el navegador. Esta semana hacemos lo mismo del otro lado: aprendemos el **vocabulario backend** mínimo para seguir siendo **supervisor arquitectónico** cuando el código deja de correr en la pestaña del usuario y empieza a correr en una máquina que vos no ves. El rol no cambia. Cambia el terreno.

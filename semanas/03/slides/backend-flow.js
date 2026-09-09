@@ -121,7 +121,7 @@ function initBackendFlow(opts) {
               hArrow() +
               buildNode('rest',      'REST',      'estilo',    'git-fork',  2) +
               hArrow() +
-              buildNode('endpoints', 'Endpoints', 'contract',  'plug-zap',  3) +
+              buildNode('endpoints', 'Endpoints', 'contrato',  'plug-zap',  3) +
               hArrow() +
               buildNode('datos',     'Datos',     'memoria',   'database',  4) +
             '</div>' +
