@@ -4,13 +4,15 @@
 
 ## Section 1: Backend y el supervisor arquitectónico
 **Source material:** `source_material/01-backend-y-el-supervisor.md`
-**Through-line:** El rol de supervisor arquitectónico no cambia entre frontend y backend; lo que cambia es el terreno. Esta sección establece la simetría con semana 02 y da el mapa de las seis piezas que se desarman en el resto de la clase.
-**Key analogy:** El espejo de la semana 02. Frontend ↔ backend como las dos mitades simétricas de la misma habilidad: nombrar piezas para dirigir a una IA.
+**Through-line:** Primero fijar qué es un backend y qué formas toma, después acotar el foco al servidor web. El rol de supervisor arquitectónico no cambia entre frontend y backend; lo que cambia es el terreno. Esta sección establece la simetría con semana 02 y da el mapa de las seis piezas que se desarman en el resto de la clase.
+**Key analogy:** El espejo de la semana 02, en dos niveles. La apertura espeja la slide de tipos de frontend (§1.1 de semana 02): definición + las formas que toma + acote del foco. Y el arco entero espeja el rol: frontend ↔ backend como las dos mitades simétricas de la misma habilidad, nombrar piezas para dirigir a una IA.
 **What students walk away knowing:**
+- Qué es un backend y que "backend" no quiere decir "servidor web": hay procesos programados, workers de cola y backends embebidos sin red.
+- Lo que las cuatro formas comparten: custodian los datos y ejecutan las reglas que no se pueden saltear desde afuera. De ahí sale el peso del rol.
 - El rol "supervisor arquitectónico" sobrevive al cambio de capa; lo que cambia es el vocabulario.
 - El mapa de la clase: HTTP → REST → endpoints → datos → errores → OpenAPI (el contrato escrito).
-**Animations / interactive:** None new. Considerar reutilizar `pipeline-roadmap` (semana 01) para mostrar el arco de las 6 piezas y volver a iluminarlas al abrir cada sección.
-**Slide budget:** 3 slides (espejo → roadmap → disclaimer). Sin hook ni "tres cosas que cambian": ambos pre-cargan vocabulario backend que el alumno todavía no tiene; cada consecuencia (persistencia, contratos, leer la respuesta) se motiva en su propia sección más adelante.
+**Animations / interactive:** Diagrama interactivo de la anatomía de una request (`backend-flow.js`), seis pasos con branch 2xx/5xx. El `piece-roadmap` se vuelve a iluminar al abrir cada sección.
+**Slide budget:** 4 slides (qué es un backend → espejo → anatomía de una request → disclaimer). Sin hook tipo big-question ni "tres cosas que cambian": ambos pre-cargan vocabulario backend que el alumno todavía no tiene; cada consecuencia (persistencia, contratos, leer la respuesta) se motiva en su propia sección más adelante. El acote al servidor web va en el speaker note, no en el texto visible.
 
 ## Section 2: Cliente, servidor y HTTP
 **Source material:** `source_material/02-cliente-servidor-y-http.md`

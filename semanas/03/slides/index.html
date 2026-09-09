@@ -134,6 +134,48 @@
      ============================================================ -->
 <section>
 
+  <!-- §1.1: Qué es un backend y de qué formas toma -->
+  <section>
+    <h2>Qué es un backend</h2>
+    <p style="font-size: 1.1em; max-width: 40em; margin: 10px auto 0; text-align: center;">
+      La parte de un sistema que el usuario no ve: ejecuta la lógica, guarda el estado y hace cumplir las reglas.
+    </p>
+    <p style="font-size: 1.05em; color: var(--text-muted); max-width: 40em; margin: 10px auto 0; text-align: center;">
+      Nadie lo usa de forma directa. Alguien le pide algo &mdash; una interfaz, otro programa, un reloj &mdash; y él responde.
+    </p>
+    <div class="consequence-row" style="margin-top: 22px;">
+      <div class="bg-secondary-card" style="border-left: 4px solid var(--accent); padding: 12px;">
+        <h3 style="color: var(--accent); margin-bottom: 8px; font-size: 0.95em;">Servidor web</h3>
+        <p style="color: var(--text-muted);">Espera pedidos por red y contesta de a uno. Detrás de casi todo sitio o app.</p>
+      </div>
+      <div class="bg-secondary-card" style="border-left: 4px solid var(--text-muted); padding: 12px;">
+        <h3 style="color: var(--text-muted); margin-bottom: 8px; font-size: 0.95em;">Proceso programado</h3>
+        <p style="color: var(--text-muted);">Nadie le pide nada: arranca solo a una hora fija. Facturación de fin de mes, reportes de la madrugada.</p>
+      </div>
+      <div class="bg-secondary-card" style="border-left: 4px solid var(--text-muted); padding: 12px;">
+        <h3 style="color: var(--text-muted); margin-bottom: 8px; font-size: 0.95em;">Worker de cola</h3>
+        <p style="color: var(--text-muted);">Toma trabajos de una fila y los procesa de a uno. Mandar mails, convertir videos.</p>
+      </div>
+      <div class="bg-secondary-card" style="border-left: 4px solid var(--text-muted); padding: 12px;">
+        <h3 style="color: var(--text-muted); margin-bottom: 8px; font-size: 0.95em;">Embebido</h3>
+        <p style="color: var(--text-muted);">Sin red y sin servidor: vive dentro de la misma aplicación. También es un backend.</p>
+      </div>
+    </div>
+    <p class="fragment fade-in" style="margin-top: 20px; font-size: 1.05em; text-align: center; max-width: 42em; margin-left: auto; margin-right: auto;">
+      Los cuatro hacen lo mismo: custodian los datos y ejecutan las reglas que <span style="color: var(--accent);">nadie puede saltear desde afuera</span>.
+    </p>
+    <aside class="notes">
+      <p><strong>Presentar las cuatro formas. Click para revelar el cierre.</strong></p>
+      <p><u>Apertura: qué es un backend y qué formas toma, antes de acotar el foco al servidor web. Espejo exacto de la slide de tipos de frontend.</u></p>
+      <p><em>"Antes de meternos en nada, pongámonos de acuerdo en qué es un backend, porque es la palabra que va a aparecer todo el tiempo de acá en adelante. Es la parte del sistema que el usuario no ve: ejecuta la lógica, guarda el estado y hace cumplir las reglas. Si el frontend era la capa con la que trata una persona, el backend es todo lo que quedaba detrás cuando dijimos 'los datos y las reglas del negocio viven atrás'. Eso de atrás es esto."</em></p>
+      <p><em>"Y algo importante: nadie usa un backend de forma directa. Siempre alguien le pide algo. A veces ese alguien es una interfaz, a veces es otro programa, y a veces &mdash; esto sorprende &mdash; es simplemente un reloj que dice 'son las tres de la mañana, arrancá'."</em></p>
+      <p><em>"Porque backend no quiere decir 'servidor web'. Hay de varias formas. El servidor web espera pedidos por red y contesta de a uno; es el que está detrás de casi cualquier sitio o app que usaste. El proceso programado es distinto: nadie le pide nada, arranca solo a una hora fija. La facturación de fin de mes, el reporte que aparece hecho a las siete de la mañana. Eso lo corrió un backend que nadie invocó."</em></p>
+      <p><em>"El worker de cola toma trabajos de una fila y los procesa de a uno. Cuando subís un video y la plataforma te dice 'lo estamos procesando', eso es un worker. Y el cuarto sorprende a algunos: el embebido. Sin red, sin servidor, sin nada que escuche pedidos &mdash; la lógica y los datos viven adentro de la misma aplicación. Una app de escritorio que guarda todo en un archivo local tiene backend, aunque no haya ningún servidor prendido en ningún lado."</em></p>
+      <p><em>"[Click.] Las cuatro hacen lo mismo: custodian los datos y ejecutan las reglas que nadie puede saltear desde afuera. Quedate con esa última parte, porque es la que le da el peso al rol. Una regla que vive en el frontend se puede esquivar &mdash; abrís las herramientas del navegador y la salteás. Una regla que vive en el backend, no. Por eso el backend es donde terminan las decisiones que de verdad importan."</em></p>
+      <p><em>"Nosotros vamos con la primera forma, el servidor web, por dos razones. Es la más común con diferencia, y es la única que te obliga a definir un contrato explícito con quien te habla. Ese contrato es el corazón de todo lo que sigue."</em></p>
+    </aside>
+  </section>
+
   <!-- §1.2: Mismo rol, otro terreno — el espejo con semana 02 -->
   <section>
     <h2>Mismo rol, otro terreno</h2>

@@ -11,7 +11,7 @@ Implementation plan derived from `spine.md`. Through-line A (espejo backend de s
   - `<aside class="notes">` per slide, three-format speaker notes.
   - Trailing `<script>` block(s) only if the section needs animation init.
 - **Shared CSS first.** Prefer existing classes from `_config/theme/components.css`: `.bg-secondary-card`, `.bg-code-card`, `.comparison-2col`, `.flow-step`, `.flow-arrow`, `.pipe-grid`, `.pipe-node`, `.pipe-arrow`, `.pipeline-box`, `.pipeline-arrow`, `.chat-mockup` (+ `.chat-bubble`, `.chat-cursor`), `.stage-box`. Only invent scoped CSS when no existing class fits.
-- **Shared roadmap class.** A `.piece-roadmap` (defined once in the page-level scaffold) reuses `.pipe-node` / `.pipe-arrow` styling and adds `.active-1` … `.active-6` selectors that highlight one of the six pieces (HTTP, REST, endpoints, datos, errores, salto). Section openers (§2 onward) re-render the roadmap with the right `.active-N` to keep the espejo arc visible.
+- **Shared roadmap class.** A `.piece-roadmap` (defined once in the page-level scaffold) reuses `.pipe-node` / `.pipe-arrow` styling and adds `.active-1` … `.active-6` selectors that highlight one of the six pieces (HTTP, REST, endpoints, datos, errores, OpenAPI). Section openers (§2 onward) re-render the roadmap with the right `.active-N` to keep the espejo arc visible.
 - **Voice and didactic rules** per `tools/skills/slide-generation/voice-and-didactics.md`. No bullet-only slides. Three-format notes: `<strong>` actions / `<u>` description / `<em>` script (between quotes, conversational). One `<em>` block per fragment-press.
 - **No emojis. No "diplomatura". No "Vibe Coding". No "payoff" — usar "recompensa" o "sentido". Title slide h1 is the topic, not "Semana NN".**
 
@@ -25,17 +25,18 @@ Implementation plan derived from `spine.md`. Through-line A (espejo backend de s
 1. Copy `shared/templates/week-template.html` to `slides/index.html`.
 2. Title: `Semana 03 — Arquitectura Backend y Datos`.
 3. Title slide: `h1 = Arquitectura Backend y Datos`, subtitle = `Vocabulario para dirigir a la IA del otro lado del cable`, muted = `Introducción al desarrollo de software asistido por IA`.
-4. Add a per-page `<style>` block with the `.piece-roadmap` rules: a thin row using `.pipe-node` / `.pipe-arrow`, with selectors `.piece-roadmap.active-1 …` through `.active-6` that highlight the corresponding node and dim the rest. Six nodes labelled: HTTP, REST, Endpoints, Datos, Errores, Salto.
+4. Add a per-page `<style>` block with the `.piece-roadmap` rules: a thin row using `.pipe-node` / `.pipe-arrow`, with selectors `.piece-roadmap.active-1 …` through `.active-6` that highlight the corresponding node and dim the rest. Six nodes labelled: HTTP, REST, Endpoints, Datos, Errores, OpenAPI.
 5. Leave a placeholder block per section: `<!-- ============= §N — Title ============= --> <!-- INJECT_SECTION_N --> <!-- /§N -->`.
 
 ## Task 1 — §1 Backend y el supervisor arquitectónico (apertura)
 
 **Subagent dispatch.** Inputs: spine §1 entry, source `01-backend-y-el-supervisor.md`, semana 02 §1 as shape reference.
 
-**Slide arc (3 slides):**
-1. Mismo rol, otro terreno — `comparison-2col`: Frontend (semana 02) ↔ Backend (semana 03). Esto materializa la analogía clave y abre la sección.
-2. Roadmap de las seis piezas — `piece-roadmap` con seis nodos, fragmentos para revelarlos uno por uno + arrow.
-3. A qué prestamos atención hoy — `comparison-2col`: lo que NO es / lo que SÍ es. Cierra con la frase del source: "Volvé al rol cuando dudes: sos supervisor arquitectónico también del lado del servidor."
+**Slide arc (4 slides):**
+1. Qué es un backend — definición + las cuatro formas que toma (servidor web / proceso programado / worker de cola / embebido) en `consequence-row`, la primera en accent y el resto en muted. Fragment de cierre con lo que las cuatro comparten, y el acote al servidor web en el speaker note. Espejo exacto de la slide de tipos de frontend de semana 02 §1.1 — misma estructura, mismo sizing (1.1em / 1.05em / tarjetas heredando `.consequence-row p`).
+2. Mismo rol, otro terreno — `comparison-2col`: Frontend (semana 02) ↔ Backend (semana 03). Esto materializa la analogía clave.
+3. Anatomía de una request — diagrama interactivo `backend-flow.js`, seis pasos con branch 2xx/5xx. Las cinco piezas que viven dentro del servidor; OpenAPI no aparece porque describe el contrato, no participa del request lifecycle.
+4. A qué prestamos atención hoy — `comparison-2col`: lo que NO es / lo que SÍ es. Cierra con la frase del source: "Volvé al rol cuando dudes: sos supervisor arquitectónico también del lado del servidor."
 
 NB: omitido un hook tipo big-question (era redundante con la pregunta de semana 02) y omitida una slide de "tres cosas que cambian" (pre-cargaba vocabulario backend antes de que el alumno tuviera contexto). Cada una de esas tres consecuencias se motiva en su sección propia más adelante.
 
