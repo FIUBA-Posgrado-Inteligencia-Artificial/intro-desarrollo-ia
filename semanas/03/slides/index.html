@@ -1048,7 +1048,7 @@ Content-Type: application/json
       <div class="bg-secondary-card" style="border-left: 4px solid var(--accent);">
         <h3 style="color: var(--accent); margin-bottom: 8px; font-size: 1em;">REST</h3>
         <p style="font-size: 0.78em; line-height: 1.5; margin: 0;">
-          Una <strong>convención</strong> sobre qué se transporta y cómo se nombra.
+          Una <strong>convención</strong> sobre cómo usar ese transporte: qué se expone como recurso y qué operación viaja en el method.
         </p>
       </div>
     </div>
@@ -1058,7 +1058,7 @@ Content-Type: application/json
     <aside class="notes">
       <p><strong>Mostrar la separación HTTP/REST. Click para revelar la nota sobre alternativas (GraphQL, RPC).</strong></p>
       <p><u>El mantra que separa transporte de convención. Importante para que después no confundan "no sigue REST" con "no funciona".</u></p>
-      <p><em>"Acá está la frase que conviene grabar. HTTP es el cómo: el transporte. Define los methods, los status codes, los headers, cómo se manda un body, cómo viene la response. Es la maquinaria — la misma maquinaria que usás cada vez que un navegador le habla a un servidor. REST es el qué: una convención sobre qué se transporta encima de HTTP y cómo se nombra. Es estilo arquitectónico, no es protocolo."</em></p>
+      <p><em>"Acá está la frase que conviene grabar. HTTP es el cómo: el transporte. Define los methods, los status codes, los headers, cómo se manda un body, cómo viene la response. Es la maquinaria — la misma maquinaria que usás cada vez que un navegador le habla a un servidor. REST es el qué: una convención sobre cómo usar esa maquinaria — qué se expone como recurso y qué operación viaja en el method. Es un estilo arquitectónico, no un protocolo: no agrega nada al cable, ordena el uso de lo que ya está."</em></p>
       <p><em>"Por eso la opción B del hook anterior (POST barra borrar-tarea) no estaba rota; estaba escrita en otro estilo. Funcionaba como HTTP. No calificaba como REST."</em></p>
       <p><em>"Una aclaración honesta antes de seguir: REST no es la única convención. Existe GraphQL, donde toda la API vive en un solo path y el cliente declara qué campos quiere recibir. Existe RPC, que en lugar de modelar recursos expone funciones con nombre — como llamar métodos remotos. Las dos son legítimas. Pero la mayoría de las APIs públicas y de los proyectos en los que vas a dictar contrato hablan REST, así que el resto de esta clase lo asume."</em></p>
     </aside>

@@ -27,7 +27,7 @@
 
 ## Section 3: REST como estilo
 **Source material:** `source_material/03-rest-como-estilo.md`
-**Through-line:** HTTP es el cómo (transporte); REST es el qué (convención sobre qué se transporta y cómo se nombra). Todo es recurso, las URLs nombran recursos no acciones, y cuatro reglas (plural, jerarquía, idempotencia, stateless) ordenan cómo se piden las cosas.
+**Through-line:** HTTP es el cómo (transporte); REST es el qué (convención sobre cómo usar ese transporte: qué se expone como recurso y qué operación viaja en el method). Todo es recurso, las URLs nombran recursos no acciones, y cuatro reglas (plural, jerarquía, idempotencia, stateless) ordenan cómo se piden las cosas.
 **Hook:** Querés borrar la tarea 17 del proyecto 4. ¿`DELETE /projects/4/tasks/17` o `POST /borrar-tarea?id=17&proyecto=4`? Las dos son HTTP válido. Una sola es REST.
 **What students walk away knowing:**
 - REST es una convención (no la única — GraphQL y RPC existen), y la mayoría de las APIs que vas a dictar la usan.
