@@ -43,7 +43,7 @@
 **Key analogy:** Endpoint con contrato ↔ componente con props/state (semana 02). El "átomo dictable" del frontend tiene su gemelo del lado del servidor: una pieza chica, con bordes claros, que pegás a la IA sin tener que aclarar nada más.
 **What students walk away knowing:**
 - Las cinco piezas de un endpoint y por qué cada una corresponde a una decisión que alguien tiene que tomar (o la IA la toma sin avisarte).
-- Mantra path/query/body: path identifica, query modifica, body transporta el contenido nuevo.
+- Mantra path/query/body: path identifica, query ajusta el pedido, body transporta el contenido nuevo.
 - Cómo se ve un bloque de contrato concreto y por qué es la unidad mínima dictable que cierra el espejo con semana 02.
 **Animations / interactive:** None new. `code-walkthrough` con highlights por línea sobre el bloque de contrato (method, path, entrada, salida, errores, cada uno se ilumina). Posible variante con `clickable-steps` reutilizando el componente de semana 01.
 **Slide budget:** 8–10

@@ -1474,45 +1474,78 @@ GET  /projects/4</code></pre>
 
   <!-- §4.4: Path / Query / Body — el mantra -->
   <section>
-    <h2>D&oacute;nde viajan los datos</h2>
-    <p style="font-size: 0.75em; color: var(--text-muted); text-align: center; max-width: 40em; margin: 4px auto 6px;">
-      Los datos que mand&aacute;s al servidor pueden viajar en tres lugares. D&oacute;nde los ponen no es est&eacute;tica: cambia la sem&aacute;ntica del pedido.
+    <style>
+      /* Request anatomy: un solo pedido con sus tres zonas coloreadas.
+         Va en <div>, no en <pre><code>: el highlight plugin escapa los
+         <span> como texto literal. */
+      .s44-req {
+        font-family: var(--font-mono);
+        font-size: 0.68em;
+        line-height: 1.6;
+        background: #07070d;
+        border: 1px solid #1a1a2e;
+        border-radius: 8px;
+        padding: 14px 18px;
+        max-width: 34em;
+        margin: 10px auto 0;
+        white-space: pre;
+        overflow-x: auto;
+        text-align: left;
+      }
+      .s44-m { color: var(--text-muted); }
+      .s44-p, .s44-q, .s44-b {
+        /* sin padding lateral: los fondos de path y query tienen que
+           tocarse en el "?", si no parece que la URL lleva un espacio */
+        padding: 3px 0;
+        border-radius: 2px;
+        font-weight: 700;
+      }
+      .s44-p { color: var(--accent);           background: rgba(100, 255, 218, 0.10); }
+      .s44-q { color: var(--accent-secondary); background: rgba(130, 170, 255, 0.12); }
+      .s44-b { color: #f59e0b;                 background: rgba(245, 158, 11, 0.10); font-weight: 400; }
+      .s44-legend {
+        font-size: 0.6em;
+        color: var(--text-muted);
+        text-align: center;
+        margin: 8px auto 0;
+        font-style: italic;
+      }
+    </style>
+    <h2 style="margin-bottom: 4px;">D&oacute;nde viajan los datos</h2>
+    <p style="font-size: 0.75em; color: var(--text-muted); text-align: center; max-width: 40em; margin: 4px auto 0;">
+      Un mismo pedido reparte sus datos en tres lugares. Cu&aacute;l us&aacute;s no es est&eacute;tica: cambia lo que el pedido significa.
     </p>
+    <div class="s44-req"><span class="s44-m">POST</span> <span class="s44-p">/projects/4/tasks</span><span class="s44-q">?notify=false</span>
+<span class="s44-b">{ "title": "Comprar pan", "due_date": "2026-05-08" }</span></div>
+    <p class="s44-legend">Un solo request. Tres zonas, tres trabajos distintos.</p>
     <div class="s4-three-card">
       <div class="bg-secondary-card" style="border-left: 4px solid var(--accent);">
-        <p class="s4-card-eyebrow">Path</p>
+        <p class="s4-card-eyebrow" style="color: var(--accent);">Path</p>
         <h3 style="color: var(--accent);">identifica</h3>
-        <pre><code class="language-text" data-trim>/projects/{id}
-&rarr; /projects/4</code></pre>
-        <p class="s4-card-foot">El <code>4</code> dice <em>este</em> proyecto, no otro. Parte del path.</p>
+        <p class="s4-card-foot">Sobre qu&eacute; recurso actu&aacute;s. El <code>4</code> dice <em>este</em> proyecto, no otro.</p>
       </div>
       <div class="bg-secondary-card" style="border-left: 4px solid var(--accent-secondary);">
-        <p class="s4-card-eyebrow">Query</p>
-        <h3 style="color: var(--accent-secondary);">modifica</h3>
-        <pre><code class="language-text" data-trim>/projects?page=2
-        &amp;sort=date</code></pre>
-        <p class="s4-card-foot">Despu&eacute;s del <code>?</code>. Filtra, pagina, ordena. La colecci&oacute;n no cambia; el pedido s&iacute;.</p>
+        <p class="s4-card-eyebrow" style="color: var(--accent-secondary);">Query</p>
+        <h3 style="color: var(--accent-secondary);">ajusta el pedido</h3>
+        <p class="s4-card-foot">No cambia cu&aacute;l es el recurso. Filtra, pagina, ordena o activa una opci&oacute;n.</p>
       </div>
       <div class="bg-secondary-card" style="border-left: 4px solid #f59e0b;">
-        <p class="s4-card-eyebrow">Body</p>
+        <p class="s4-card-eyebrow" style="color: #f59e0b;">Body</p>
         <h3 style="color: #f59e0b;">transporta</h3>
-        <pre><code class="language-json" data-trim>{
-  "title": "Comprar pan",
-  "due_date": "2026-05-08"
-}</code></pre>
-        <p class="s4-card-foot">El contenido nuevo de una creaci&oacute;n o actualizaci&oacute;n. Normalmente JSON.</p>
+        <p class="s4-card-foot">El contenido nuevo que cre&aacute;s o actualiz&aacute;s. Normalmente JSON.</p>
       </div>
     </div>
-    <p style="margin-top: 22px; font-size: 0.95em; text-align: center;">
-      Path <span style="color: var(--text-muted);">identifica</span>. Query <span style="color: var(--text-muted);">modifica</span>. Body <span style="color: var(--text-muted);">transporta</span>.
+    <p style="margin-top: 18px; font-size: 0.95em; text-align: center;">
+      Path <span style="color: var(--accent);">identifica</span>. Query <span style="color: var(--accent-secondary);">ajusta</span>. Body <span style="color: #f59e0b;">transporta</span>.
     </p>
     <aside class="notes">
-      <p><u>El mantra path/query/body. Tres palabras chicas que evitan que la IA mande el id del proyecto en el body o el title en la query.</u></p>
-      <p><em>"Tres lugares, tres trabajos distintos. Vamos uno por uno."</em></p>
-      <p><em>"Path identifica. Cuando ves <code>/projects/{id}</code> y ped&iacute;s <code>/projects/4</code>, ese cuatro est&aacute; diciendo &lsquo;este proyecto, no otro&rsquo;. El path apunta a un recurso puntual."</em></p>
-      <p><em>"Query modifica. Aparece despu&eacute;s del signo de pregunta y se usa para filtrar, paginar, ordenar. <code>/projects?page=2&amp;sort=date</code> no apunta a un proyecto distinto: apunta a la misma colecci&oacute;n pero pidiendo la segunda p&aacute;gina ordenada por fecha."</em></p>
-      <p><em>"Body transporta el contenido. Cuando hac&eacute;s POST a <code>/projects/4/tasks</code>, el cuatro va en el path porque identifica al proyecto, pero los datos de la tarea nueva viajan en el body, normalmente como JSON."</em></p>
-      <p><em>"Repet&iacute; el mantra cada vez que escrib&aacute;s un prompt: path identifica, query modifica, body transporta. Si la IA pone el id del proyecto en el body, mal. Si pone el title en la query, mal. Esos errores los van a generar los modelos cuando el prompt no los nombra."</em></p>
+      <p><u>El mantra path/query/body sobre un solo request, para que se vea que las tres zonas conviven en el mismo pedido. Los colores del bloque de arriba son los mismos que los de las tarjetas: se se&ntilde;ala arriba y se explica abajo.</u></p>
+      <p><u><strong>Ojo con "ajusta":</strong> antes esta slide dec&iacute;a "query modifica", y chocaba con el PATCH de la secci&oacute;n anterior &mdash; el alumno pod&iacute;a entender que la query cambia datos en el servidor. La query no modifica nada: modifica el pedido, no el recurso.</u></p>
+      <p><em>"Ac&aacute; hay un solo request, y lo eleg&iacute; as&iacute; a prop&oacute;sito porque usa los tres lugares a la vez. Mir&aacute; los colores. En verde, el path: barra projects barra cuatro barra tasks. En azul, la query: signo de pregunta, notify igual false. Y en naranja, abajo, el body con el JSON de la tarea. Un pedido, tres zonas."</em></p>
+      <p><em>"Path identifica. Dice sobre qu&eacute; recurso est&aacute;s actuando. Ese cuatro no es un dato cualquiera: est&aacute; diciendo &lsquo;este proyecto, no otro&rsquo;. Si sac&aacute;s el cuatro, el pedido deja de saber d&oacute;nde crear la tarea."</em></p>
+      <p><em>"Query ajusta el pedido. Y ac&aacute; quiero ser preciso con la palabra, porque en la secci&oacute;n anterior vimos PATCH, que s&iacute; modifica un recurso. La query no modifica nada del servidor: modifica el pedido. Notify igual false no cambia qu&eacute; tarea se crea ni d&oacute;nde; dice &lsquo;hacelo, pero sin mandar la notificaci&oacute;n&rsquo;. Lo mismo vale para filtrar, paginar u ordenar: el recurso sigue siendo el mismo, cambia c&oacute;mo lo ped&iacute;s."</em></p>
+      <p><em>"Body transporta el contenido nuevo. Los datos de la tarea que estamos creando &mdash; el t&iacute;tulo, la fecha &mdash; no identifican nada ni ajustan nada: son la cosa en s&iacute;. Por eso viajan aparte, normalmente como JSON."</em></p>
+      <p><em>"Una aclaraci&oacute;n honesta: la mayor&iacute;a de los endpoints de creaci&oacute;n no necesitan query, y de hecho el bloque de contrato que armamos reci&eacute;n no ten&iacute;a ninguna. Le agregu&eacute; una ac&aacute; para que puedan ver las tres zonas juntas. Repet&iacute; el mantra cada vez que escrib&aacute;s un prompt: path identifica, query ajusta, body transporta. Si la IA te pone el id del proyecto en el body, mal. Si te pone el title en la query, mal. Esos errores los generan los modelos justamente cuando el prompt no nombra d&oacute;nde va cada cosa."</em></p>
     </aside>
   </section>
 

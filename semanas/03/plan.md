@@ -92,7 +92,7 @@ NB: omitido un hook tipo big-question (era redundante con la pregunta de semana 
 1. Section opener: `Pieza 3 — Endpoints` con `piece-roadmap` en `active-3`.
 2. Hook: "Le decís a la IA 'hacé un endpoint para crear una tarea' y te devuelve trescientas líneas." Listar las 10 decisiones invisibles que tomó la IA en una columna; del otro lado, el contrato que las explicita. `comparison-2col`.
 3. Un path es una promesa — las cinco piezas con un slide tipo pipeline horizontal: method → path → schema-in → schema-out → códigos posibles. Reuse `.flow-step` o crear `.s4-piece` con highlight por fragmento.
-4. Path / Query / Body — mantra ("path identifica, query modifica, body transporta"). `comparison-2col` o tres-card con ejemplos.
+4. Path / Query / Body — mantra ("path identifica, query ajusta el pedido, body transporta"). Un solo request arriba con las tres zonas coloreadas + `s4-three-card` explicando cada una; los colores del bloque y de las tarjetas tienen que coincidir. Evitar "modifica" para la query: choca con el PATCH de §2.
 5. El controller atiende la promesa — frase: vos no escribís controllers, los especificás. Tarjeta única.
 6. El bloque de contrato — `code-walkthrough` con el pseudocódigo del source completo (POST /projects/{id}/tasks con sus salidas 201/400/404). `data-line-numbers` para resaltar primero el method+path, después la entrada, después salida 201, después las salidas de error.
 7. **Slide de la analogía clave** — espejo con semana 02: "Endpoint con contrato ↔ componente con props/state". `comparison-2col`: a la izquierda el componente con props tipadas (semana 02), a la derecha el endpoint con contrato (esta clase). Pie: "El átomo dictable también tiene gemelo del lado del servidor."
