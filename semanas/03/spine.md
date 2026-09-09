@@ -1,6 +1,6 @@
 # Spine — Semana 03: Arquitectura Backend y Datos
 
-**Whole-week through-line:** La semana 02 te enseñó a nombrar las piezas del frontend para dirigir a la IA cuando el código vive en el navegador. Esta semana es el reflejo: mismo rol (supervisor arquitectónico), mismo mecanismo (vocabulario → especificación → código auditable), terreno nuevo (servidor). HTTP, REST, paths, datos y errores son el vocabulario backend que te permite seguir dirigiendo cuando el código se muda al servidor. La clase termina cerrando el espejo en vivo: el profesor escribe un openapi.yaml en ChatGPT canvas mientras los alumnos leen endpoint por endpoint el contrato del §4 hecho archivo, y ven el yaml renderizado en Swagger UI.
+**Whole-week through-line:** La semana 02 te enseñó a nombrar las piezas del frontend para dirigir a la IA cuando el código vive en el navegador. Esta semana es el reflejo: mismo rol (supervisor arquitectónico), mismo mecanismo (vocabulario → especificación → código auditable), terreno nuevo (servidor). HTTP, REST, paths, datos y errores son el vocabulario backend que te permite seguir dirigiendo cuando el código se muda al servidor. La clase termina cerrando el espejo en vivo: el profesor le dicta el contrato del §4 a una IA, que devuelve un openapi.yaml; los alumnos lo leen endpoint por endpoint y lo ven renderizado en Swagger UI.
 
 ## Section 1: Backend y el supervisor arquitectónico
 **Source material:** `source_material/01-backend-y-el-supervisor.md`
@@ -79,9 +79,9 @@
 **Animations / interactive:** None new. `comparison-2col` con step-through highlights mapeando línea-a-línea bloque del §4 ↔ openapi.yaml.
 **Slide budget:** 3 slides (apertura → side-by-side → por qué importa).
 
-## Section 8: Demo en vivo — canvas escribe el openapi.yaml
+## Section 8: Demo en vivo — el modelo escribe el openapi.yaml
 **Source material:** `source_material/08-demo-en-vivo.md`
-**Through-line:** Coreografía del cierre. El profesor pega un prompt que dicta el contrato del §4 (projects/tasks) y le pide a ChatGPT canvas el openapi.yaml. Lee el yaml endpoint por endpoint mapeando al §4, agrega un endpoint en vivo, edita a mano dentro del canvas, y al final pega el yaml en editor.swagger.io para mostrar el render con docs interactivas y un "Try it" funcional. La cadena: contrato → archivo → docs renderizadas, en vivo.
+**Through-line:** Coreografía del cierre. El profesor pega un prompt que dicta el contrato del §4 (projects/tasks) en un chat de IA cualquiera y recibe el openapi.yaml. Lee el yaml endpoint por endpoint mapeando al §4, pide un endpoint más desde el chat, y al final pega el yaml en editor.swagger.io para mostrar el render con docs interactivas, un "Try it" funcional y una edición a mano en vivo. El demo no depende de ninguna función de editor colaborativo. La cadena: contrato → archivo → docs renderizadas, en vivo.
 **What students walk away knowing:**
 - El demo no agrega un concepto nuevo; cierra el espejo y deja al alumno con ganas de tomar el yaml y darlo a una IA local en semana 4.
 - (Apropiación visceral) Lo que ustedes dictaron fue el contrato; ahora tiene archivo. El rol — supervisor arquitectónico — sobrevivió la mudanza al servidor.

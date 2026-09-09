@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="../../../_config/theme/custom.css">
   <link rel="stylesheet" href="../../../_config/theme/components.css">
   <!-- Lucide icons for §1.4 interactive backend-flow diagram -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
   <style>
     /* Safety net for dense slides */
     .reveal .slides > section,
@@ -122,7 +122,7 @@
         <aside class="notes">
           <p><strong>Proyectar mientras se acomodan. Esperar 1–2 min.</strong></p>
           <p><u>Apertura de la semana 03. La frontera ya no es la pestaña; es el servidor.</u></p>
-          <p><em>"Hoy hacemos el reflejo de lo que vimos la semana pasada. Ahí aprendimos a nombrar las piezas del frontend para dirigir a la IA. Hoy aprendemos las del backend — methods, paths, contratos, datos, errores — y al final cerramos con un demo en vivo: escribimos un openapi.yaml en ChatGPT canvas, el contrato hecho archivo, y lo vemos renderizado en Swagger UI."</em></p>
+          <p><em>"Hoy hacemos el reflejo de lo que vimos la semana pasada. Ahí aprendimos a nombrar las piezas del frontend para dirigir a la IA. Hoy aprendemos las del backend — methods, paths, contratos, datos, errores — y al final cerramos con un demo en vivo: le dictamos el contrato a una IA, devuelve un openapi.yaml — el contrato hecho archivo — y lo vemos renderizado en Swagger UI."</em></p>
         </aside>
       </section>
 
@@ -615,7 +615,7 @@
       <span class="pipe-arrow">→</span>
       <div class="pipe-node" data-piece="2"><div class="pipe-label">REST</div><div class="pipe-sub">estilo</div></div>
       <span class="pipe-arrow">→</span>
-      <div class="pipe-node" data-piece="3"><div class="pipe-label">Endpoints</div><div class="pipe-sub">contract</div></div>
+      <div class="pipe-node" data-piece="3"><div class="pipe-label">Endpoints</div><div class="pipe-sub">contrato</div></div>
       <span class="pipe-arrow">→</span>
       <div class="pipe-node" data-piece="4"><div class="pipe-label">Datos</div><div class="pipe-sub">memoria</div></div>
       <span class="pipe-arrow">→</span>
@@ -733,7 +733,7 @@ Content-Type: application/json
     </div>
     <aside class="notes">
       <p><u>Anatomía concreta. Se lee el bloque línea por línea mientras está en pantalla, sin fragments. Es el zoom-in al paso 1 del diagrama de §1.4 — donde HTTP desempaca el pedido.</u></p>
-      <p><em>"Ese idioma común se llama HTTP, y es un protocolo de pedido y respuesta. El cliente arma un request, el servidor arma una response, y entre los dos cabe casi todo lo que hace internet hoy. En el diagrama de §1.4 vimos un POST con body — ahora un GET, más simple, para mirar las partes con calma."</em></p>
+      <p><em>"Ese idioma común se llama HTTP, y es un protocolo de pedido y respuesta. El cliente arma un request, el servidor arma una response, y entre los dos cabe casi todo lo que hace internet hoy. En el diagrama de la anatomía de una request vimos un POST con body — ahora un GET, más simple, para mirar las partes con calma."</em></p>
       <p><em>"Arriba, el request, el pedido. Tiene cuatro partes. Primero el method: GET — uno de los cinco que importan, ya viene definido por el protocolo, no es una palabra que vos inventás. Después el path: barra projects barra cuatro. Es a qué cosa le estás hablando — querés el proyecto número cuatro. Después HTTP barra uno punto uno, que es la versión del protocolo. Y abajo los headers (metadatos). Acá tenemos uno solo: Host, que dice a qué dominio le estoy pidiendo — api.example.com. Este request no lleva body, porque los GET típicamente no llevan: solo piden información, no mandan contenido."</em></p>
       <p><em>"Abajo, la response. Tres partes. Primero el status code: doscientos OK. Eso quiere decir 'todo bien, acá tenés lo que pediste'. Después los headers: Content-Type application/json, que dice 'lo que te mando es JSON'. Y abajo el body — el contenido en sí, en este caso un objeto con id cuatro y nombre Tesis."</em></p>
       <p><em>"Ese ida y vuelta — request, response — repetido millones de veces por segundo, es internet. Pasa cada vez que el cliente (un navegador, una app, un curl) le habla al servidor. Y el vocabulario para describirlo es exactamente lo que tenés en pantalla. Cuando le dictés un endpoint a la IA, vas a tener que nombrar estas piezas — el method, el path, qué headers esperás, qué viene en el body. Si no las nombrás, el modelo elige por vos."</em></p>
@@ -773,7 +773,7 @@ Content-Type: application/json
     </p>
     <aside class="notes">
       <p><u>Cinco methods como repertorio cerrado. La aclaración terminológica importa: no son acciones libres. En §1.4 ya vimos que el method dice qué hacer con la cosa que nombra el path — acá listamos los cinco que importan.</u></p>
-      <p><em>"HTTP define un puñado de methods. La palabra engaña un poco: no son acciones que vos componés libremente. Son un repertorio cerrado — las pocas operaciones que aparecen en toda API. Como dijimos en el diagrama de §1.4, el method dice qué hacer con la cosa que nombra el path."</em></p>
+      <p><em>"HTTP define un puñado de methods. La palabra engaña un poco: no son acciones que vos componés libremente. Son un repertorio cerrado — las pocas operaciones que aparecen en toda API. Como dijimos en el diagrama de la anatomía de una request, el method dice qué hacer con la cosa que nombra el path."</em></p>
       <p><em>"Cinco que importan. GET: leer un recurso, sin efectos. Pedís información y nada cambia del lado del servidor. POST: crear un recurso nuevo (como el POST barra projects barra cuatro barra tasks del diagrama). Mandás contenido y aparece algo que antes no existía. PUT: reemplazar un recurso entero por la versión que mandás — la versión vieja desaparece. PATCH: modificar parte de un recurso, dejando el resto como estaba. Y DELETE: borrar un recurso."</em></p>
       <p><em>"Eso es todo el repertorio que vas a necesitar el noventa y cinco por ciento del tiempo. Existen otros — OPTIONS, HEAD, TRACE — pero los vas a tocar muy de vez en cuando o nunca. Cuando le dictás un endpoint a la IA, el primer paso es elegir uno de estos cinco. Si no podés elegir cuál corresponde, el contract no arranca."</em></p>
     </aside>
@@ -816,7 +816,7 @@ Content-Type: application/json
     <aside class="notes">
       <p><strong>Tres clicks: revelar 2xx, después 4xx, después 5xx.</strong></p>
       <p><u>Las tres familias de status codes, una por click. El forward a semana 7 evita teach-ahead de auth. Las ramas Response (2xx) y Errores (5xx) del diagrama de §1.4 son justamente dos de estas familias — acá las nombramos en detalle y agregamos la del medio (4xx).</u></p>
-      <p><em>"Cuando el servidor te responde, lo primero que dice es un número de tres dígitos. Está agrupado por familias, y cada familia te cuenta de qué tipo es la respuesta. En el diagrama de §1.4 ya vieron dos ramas: Response 2xx (verde) y Errores 5xx (rojo). Ahora las desarmamos en detalle, y aparece una tercera familia que no estaba en el diagrama: 4xx."</em></p>
+      <p><em>"Cuando el servidor te responde, lo primero que dice es un número de tres dígitos. Está agrupado por familias, y cada familia te cuenta de qué tipo es la respuesta. En el diagrama de la anatomía de una request ya vieron dos ramas: Response 2xx (verde) y Errores 5xx (rojo). Ahora las desarmamos en detalle, y aparece una tercera familia que no estaba en el diagrama: 4xx."</em></p>
       <p><em>"Familia dos-equis-equis: todo bien. Doscientos OK, la respuesta clásica de un GET que devolvió lo que pediste. Doscientos uno creado, lo típico de un POST que creó un recurso nuevo (el caso del diagrama, cuando el dado salía verde). Doscientos cuatro sin contenido, lo típico de un DELETE — el recurso se borró y no hay nada más para devolver."</em></p>
       <p><em>"Familia cuatro-equis-equis: vos, cliente, te equivocaste. El pedido llegó al servidor pero algo del lado del cliente está mal. Cuatrocientos mal pedido — mandaste un body que no tiene la forma que el servidor esperaba. Cuatrocientos cuatro no existe — el path o el recurso al que apuntaste no están. Acá también viven 401 y 403, autenticación y permisos, pero esos los vemos en semana 7. Hoy no los tocamos."</em></p>
       <p><em>"Familia cinco-equis-equis: yo, servidor, me caí. El pedido estaba bien armado pero el servidor no pudo cumplirlo (la rama roja del diagrama, cuando la base rechazaba el INSERT). Quinientos: algo se rompió adentro, típicamente una excepción no manejada en el código. Quinientos tres: servicio no disponible, el servidor está caído o saturado."</em></p>
@@ -941,7 +941,7 @@ Content-Type: application/json
       <span class="pipe-arrow">→</span>
       <div class="pipe-node" data-piece="3">
         <div class="pipe-label">Endpoints</div>
-        <div class="pipe-sub">contract</div>
+        <div class="pipe-sub">contrato</div>
       </div>
       <span class="pipe-arrow">→</span>
       <div class="pipe-node" data-piece="4">
@@ -1315,7 +1315,7 @@ GET  /projects/4</code></pre>
       <span class="pipe-arrow">&rarr;</span>
       <div class="pipe-node" data-piece="3">
         <div class="pipe-label">Endpoints</div>
-        <div class="pipe-sub">contract</div>
+        <div class="pipe-sub">contrato</div>
       </div>
       <span class="pipe-arrow">&rarr;</span>
       <div class="pipe-node" data-piece="4">
@@ -1564,7 +1564,7 @@ GET  /projects/4</code></pre>
       <em>Vago = loter&iacute;a.</em> &nbsp; <em>Espec&iacute;fico = determinismo.</em>
     </p>
     <aside class="notes">
-      <p><u>Cierre de &sect;4. Mismo reframing que &sect;2.5 y &sect;3.7: los LLMs modernos pueden acertar con prompts vagos, pero el vocabulario sigue importando por determinismo, iteraci&oacute;n y auditor&iacute;a.</u></p>
+      <p><u>Cierre de &sect;4. Mismo reframing que &sect;2.9 y &sect;3.9: los LLMs modernos pueden acertar con prompts vagos, pero el vocabulario sigue importando por determinismo, iteraci&oacute;n y auditor&iacute;a.</u></p>
       <p><em>"Mismo cierre que las dos secciones anteriores. Mir&aacute; los dos prompts: la intenci&oacute;n es la misma &mdash; un endpoint para crear una tarea."</em></p>
       <p><em>"Y el mismo descargo de honestidad: si vos hoy le ped&iacute;s a Claude o a ChatGPT &lsquo;hac&eacute; el endpoint de crear tarea&rsquo;, lo m&aacute;s probable es que te devuelva c&oacute;digo razonable. Va a elegir POST, va a poner title como requerido, va a devolver 201. El CRUD cl&aacute;sico es un caso textbook que los modelos vieron mil veces."</em></p>
       <p><em>"Pero el vocabulario te paga por las mismas tres razones de siempre. Determinismo: el prompt vago es loter&iacute;a. Esta vez la IA eligi&oacute; 201, la pr&oacute;xima puede tirarte 200. Esta vez puso el id del proyecto en el path, la pr&oacute;xima puede mandarlo en el body. Ped&iacute;le algo m&aacute;s raro &mdash; un endpoint que mueve una tarea de un proyecto a otro, un endpoint con paginaci&oacute;n y filtros &mdash; y la variabilidad explota."</em></p>
@@ -1601,7 +1601,7 @@ GET  /projects/4</code></pre>
       <span class="pipe-arrow">&rarr;</span>
       <div class="pipe-node" data-piece="3">
         <div class="pipe-label">Endpoints</div>
-        <div class="pipe-sub">contract</div>
+        <div class="pipe-sub">contrato</div>
       </div>
       <span class="pipe-arrow">&rarr;</span>
       <div class="pipe-node" data-piece="4">
@@ -1624,7 +1624,7 @@ GET  /projects/4</code></pre>
       Acá nombramos cómo guardarlos.
     </p>
     <aside class="notes">
-      <u>Apertura de la sección 4. Roadmap iluminado en "Datos". No hay fragmentos.</u>
+      <p><u>Apertura de §5. Roadmap iluminado en "Datos" (pieza 4). No hay fragmentos.</u></p>
       <p><em>"Tenemos method, path y contrato. Lo que falta es el lugar donde lo que entra por el contrato queda guardado, y donde lo que sale viene a buscarse. Esa es la cuarta pieza: los datos. Sin ella, el servidor es un proceso que atiende pedidos y se olvida de todo apenas el pedido termina. Un proceso vivo sin memoria."</em></p>
       <p><em>"Esta sección hace dos cosas. Primero te da las tres razones por las que hace falta una base, no un archivo de texto. Después te muestra las dos grandes formas de modelar esa memoria, relational y document, con el mismo dominio de tareas y proyectos modelado en las dos. Y termina con la heurística que vamos a usar el resto del curso."</em></p>
     </aside>
@@ -1641,8 +1641,8 @@ GET  /projects/4</code></pre>
       Eso no era un bug; era el modelo.
     </p>
     <aside class="notes">
-      <strong>Dejar la frase grande respirando 5 segundos antes de hablar.</strong>
-      <u>Hook de la sección. Reactiva la to-do list de semana 02 y la convierte en motor del concepto de persistencia.</u>
+      <p><strong>Dejar la frase grande respirando 5 segundos antes de hablar.</strong></p>
+      <p><u>Hook de la sección. Reactiva la to-do list de semana 02 y la convierte en motor del concepto de persistencia.</u></p>
       <p><em>"Acordate de la to-do list que armamos la clase pasada. Vivía adentro de una variable de JavaScript en el navegador. Agregabas una tarea, la marcabas como hecha, y todo se veía perfecto. Refrescabas la pestaña y todo desaparecía."</em></p>
       <p><em>"Eso no era un bug del ejercicio. Era el modelo. El navegador es un cliente; los clientes no recuerdan. Cuando vos hacés F5, la página vuelve a cargar desde cero y el estado anterior no existe. El lugar donde la información sobrevive a un refresh, a un cierre de sesión, a un despliegue del lunes a la mañana, es el servidor. Y dentro del servidor, la base de datos. La pregunta de esta sección no es si hace falta una; es qué forma tiene esa memoria."</em></p>
     </aside>
@@ -1666,8 +1666,8 @@ GET  /projects/4</code></pre>
       </div>
     </div>
     <aside class="notes">
-      <strong>Revelar las tres tarjetas en orden, una por click.</strong>
-      <u>Las tres razones por las que un archivo de texto no alcanza. Ancla el "por qué" antes de presentar las dos formas.</u>
+      <p><strong>Revelar las tres tarjetas en orden, una por click.</strong></p>
+      <p><u>Las tres razones por las que un archivo de texto no alcanza. Ancla el "por qué" antes de presentar las dos formas.</u></p>
       <p><em>"Antes de elegir una forma, fijate por qué hace falta una base y no algo más simple. Hay tres razones, y conviene tenerlas separadas porque cada una manda en una decisión distinta más adelante."</em></p>
       <p><em>"Primero, persistencia. La base guarda en disco de manera ordenada, y se asegura de que lo que escribiste hoy siga ahí mañana, después de que el servidor se reinicie, después del despliegue del próximo lunes, después de que el usuario cierre la sesión. Memoria que sobrevive."</em></p>
       <p><em>"Segundo, eficiencia de consulta. Buscar una tarea entre diez se resuelve recorriendo una lista. Buscar entre diez millones no se resuelve así, se resuelve con índices y con planes de ejecución que la base sabe armar. A escala, esa diferencia es la que hace que tu app responda en cien milisegundos o se cuelgue."</em></p>
@@ -1692,8 +1692,8 @@ tasks
       Tabla, fila, columna, schema. La <span style="color: var(--accent);">foreign key</span> es la regla que la base impone: la integridad de fábrica.
     </p>
     <aside class="notes">
-      <strong>Click 1: resalta projects (1-3). Click 2: resalta tasks (5-9). Click 3: resalta solamente la línea de la foreign key. Click 4: aparece la nota de cierre.</strong>
-      <u>Bloque relational con las dos tablas del dominio del curso. La foreign key es la pieza estrella.</u>
+      <p><strong>Click 1: resalta projects (1-3). Click 2: resalta tasks (5-9). Click 3: resalta solamente la línea de la foreign key. Click 4: aparece la nota de cierre.</strong></p>
+      <p><u>Bloque relational con las dos tablas del dominio del curso. La foreign key es la pieza estrella.</u></p>
       <p><em>"Una base relational, también llamada SQL, organiza los datos en tablas. Cada tabla tiene filas, que son los registros, y columnas, que son los campos con un tipo declarado. El conjunto de tablas, columnas y tipos es el schema, la forma fija que los datos tienen que respetar."</em></p>
       <p><em>"Empecemos por arriba. Tabla projects, dos columnas: un id que es clave primaria, y un name de tipo texto. Esa es toda la tabla. Si querés guardar el proyecto Tesis, vas a tener una fila con id 1 y name igual a Tesis."</em></p>
       <p><em>"Abajo, tasks. Cuatro columnas. Un id propio, el título, una fecha de vencimiento que puede ser nula porque no toda tarea la tiene, y al final la columna interesante: project_id, que apunta al id de la tabla projects. Esa columna no es un número suelto; es una foreign key, una clave foránea."</em></p>
@@ -1717,8 +1717,8 @@ tasks
       No hay foreign key, no hay JOIN. Para traer un proyecto con todas sus tareas, leés un documento. Schema flexible. <span style="color: var(--accent);">MongoDB</span> y <span style="color: var(--accent);">DynamoDB</span> son los ejemplos típicos.
     </p>
     <aside class="notes">
-      <strong>Mostrar el documento. Click para revelar la nota de cierre.</strong>
-      <u>El mismo dominio modelado document. El contraste tiene que quedar inmediato.</u>
+      <p><strong>Mostrar el documento. Click para revelar la nota de cierre.</strong></p>
+      <p><u>El mismo dominio modelado document. El contraste tiene que quedar inmediato.</u></p>
       <p><em>"Misma información, otra forma. Una base document no piensa en tablas; piensa en documentos. Un documento es un objeto parecido a un JSON, con campos anidados y estructura libre. Los documentos se agrupan en colecciones, que son el equivalente más cercano a una tabla, pero sin la obligación de que todos compartan el mismo schema."</em></p>
       <p><em>"Mirá la diferencia. El proyecto Tesis ya no es una fila que se relaciona con otra tabla. Las tareas viven adentro del proyecto, en un campo que se llama tasks y es un arreglo de objetos. Cada tarea tiene su id, su título, su fecha. Para traer un proyecto con todas sus tareas no necesitás un JOIN, porque ya están todas en el mismo documento."</em></p>
       <p><em>"Es cómodo cuando siempre leés todo de un proyecto junto. Es pésimo cuando las tareas también necesitan vivir solas, cuando otra entidad las referencia, o cuando querés filtrar tareas globalmente sin importar a qué proyecto pertenecen. MongoDB es el ejemplo más conocido, DynamoDB de Amazon es otro habitual. Esa familia entera se llama NoSQL."</em></p>
@@ -1752,7 +1752,7 @@ tasks
       Heurística para este curso: <span style="color: var(--accent);">la mayoría de las apps arrancan relational</span>. Document tiene sentido cuando el patrón de datos lo pide.
     </p>
     <aside class="notes">
-      <u>Trade-off explícito. Cierra la elección antes de aterrizar SQLite.</u>
+      <p><u>Trade-off explícito. Cierra la elección antes de aterrizar SQLite.</u></p>
       <p><em>"La heurística es directa. Relational cuando hay relaciones claras entre entidades y querés integridad: facturación, inventario, gestión de cualquier dominio que se modela con entidades que se relacionan entre sí. Tareas que pertenecen a proyectos, facturas que tienen líneas, usuarios que tienen pedidos. Toda la familia."</em></p>
       <p><em>"Document cuando el dato es jerárquico, el schema es flexible, y el acceso natural es por documento entero. Perfiles de usuario donde cada uno tiene campos distintos, logs de eventos donde la forma cambia con cada versión del producto, cachés de respuestas que vienen de servicios externos."</em></p>
       <p><em>"La regla pragmática para este curso, y para casi cualquier app que vas a empezar a construir: arrancás relational, y la mayoría de las veces te quedás ahí. Ir a document es una decisión deliberada que tiene que justificarse con un patrón concreto. No es por defecto, no es por moda. La consecuencia útil de esto es que sabemos qué es lo que vamos a usar para el demo."</em></p>
@@ -1786,7 +1786,7 @@ tasks
       SQLite te deja concentrarte en <span style="color: var(--accent);">qué modelás</span>, no en dónde corre la base.
     </p>
     <aside class="notes">
-      <u>Aterrizaje práctico. SQLite es la elección del curso; Postgres queda nombrado para que sepan a qué transición van algún día.</u>
+      <p><u>Aterrizaje práctico. SQLite es la elección del curso; Postgres queda nombrado para que sepan a qué transición van algún día.</u></p>
       <p><em>"En este curso vamos a usar SQLite, no Postgres. La razón es práctica. SQLite es cero configuración: no hay un servidor de base aparte, no hay red, no hay usuarios, no hay credenciales. La base entera vive en un archivo en tu disco, y la librería se importa como cualquier otra del lenguaje. Si abrís el archivo del proyecto, ahí adentro está todo."</em></p>
       <p><em>"En producción, lo más probable es que termines usando Postgres, que es la opción seria, con servidor dedicado, despliegue separado, replicación, y todo eso. La buena noticia es que las decisiones de modelado son las mismas. Las tablas, las foreign keys, los tipos de columna, los JOINs: todo eso se piensa igual en SQLite y en Postgres."</em></p>
       <p><em>"SQLite te deja concentrarte en qué modelás, no en dónde corre la base. Por eso entra en una clase de noventa minutos."</em></p>
@@ -1820,7 +1820,7 @@ tasks
       <em>Vago = lotería.</em> &nbsp; <em>Específico = determinismo.</em>
     </p>
     <aside class="notes">
-      <u>Cierre de §5. Mismo patrón de cierre que §2/§3/§4: misma intención en los dos prompts, vocabulario hace la diferencia.</u>
+      <p><u>Cierre de §5. Mismo patrón de cierre que §2/§3/§4: misma intención en los dos prompts, vocabulario hace la diferencia.</u></p>
       <p><em>"Cierre de la sección, mismo patrón que en las anteriores. Mirá los dos prompts: la intención es exactamente la misma. Querés guardar tareas y proyectos. La diferencia no está en lo que pedís, está en cómo lo pedís."</em></p>
       <p><em>"Quiero ser honesto con un detalle. Si vos hoy le pegás el prompt de la izquierda a Claude, a ChatGPT o a Gemini, lo más probable es que te devuelva código que arranca: dos tablas, alguna foreign key, un seed. Los modelos modernos vieron este caso miles de veces y suelen acertar. Entonces la pregunta válida es por qué seguís necesitando el vocabulario."</em></p>
       <p><em>"Por las tres razones de siempre, ahora aplicadas a datos. Determinismo: el prompt vago deja sin fijar el motor (¿SQLite, Postgres, MongoDB?), los nombres de tablas, los tipos exactos, si las foreign keys se declaran o no. Dos generaciones del mismo prompt te pueden devolver dos schemas diferentes. El específico fija todo eso, así que dos generaciones convergen."</em></p>
@@ -1965,7 +1965,7 @@ tasks
       <span class="pipe-arrow">→</span>
       <div class="pipe-node" data-piece="2"><div class="pipe-label">REST</div><div class="pipe-sub">estilo</div></div>
       <span class="pipe-arrow">→</span>
-      <div class="pipe-node" data-piece="3"><div class="pipe-label">Endpoints</div><div class="pipe-sub">contract</div></div>
+      <div class="pipe-node" data-piece="3"><div class="pipe-label">Endpoints</div><div class="pipe-sub">contrato</div></div>
       <span class="pipe-arrow">→</span>
       <div class="pipe-node" data-piece="4"><div class="pipe-label">Datos</div><div class="pipe-sub">memoria</div></div>
       <span class="pipe-arrow">→</span>
@@ -2174,7 +2174,7 @@ proyectos?</code></pre>
       <span class="pipe-arrow">&rarr;</span>
       <div class="pipe-node" data-piece="3">
         <div class="pipe-label">Endpoints</div>
-        <div class="pipe-sub">contract</div>
+        <div class="pipe-sub">contrato</div>
       </div>
       <span class="pipe-arrow">&rarr;</span>
       <div class="pipe-node" data-piece="4">
@@ -2201,18 +2201,32 @@ proyectos?</code></pre>
     <aside class="notes">
       <p><u>Apertura de §7. Lo que vinimos llamando "contrato" durante toda la clase tiene un nombre formal y un archivo.</u></p>
       <p><em>"&Uacute;ltima pieza del mapa. Recorrimos cinco: HTTP, REST, endpoints, datos, errores. Tenemos el vocabulario backend completo. La sexta no es un concepto nuevo &mdash; es lo mismo que vinimos llamando 'contrato' en la secci&oacute;n cuatro, ahora con un nombre y un formato est&aacute;ndar."</em></p>
-      <p><em>"Se llama OpenAPI. Versi&oacute;n actual 3.1. Es el est&aacute;ndar de la industria para describir una API REST de punta a punta. Si ya escribiste el bloque del §4, ya pensaste en OpenAPI sin saberlo. Lo que viene son tres slides para verlo, y despu&eacute;s el demo en vivo."</em></p>
+      <p><em>"Se llama OpenAPI. Versi&oacute;n actual 3.1. Es el est&aacute;ndar de la industria para describir una API REST de punta a punta. Si ya escribiste el bloque de contrato de recién, ya pensaste en OpenAPI sin saberlo. Lo que viene son dos slides para verlo, y despu&eacute;s el demo en vivo."</em></p>
     </aside>
   </section>
 
-  <!-- §7.2: Side-by-side — bloque de contrato §4 ↔ openapi.yaml -->
+  <!-- §7.2: Side-by-side — bloque de contrato dictado ↔ openapi.yaml -->
   <section>
-    <h2>El bloque de contrato, en dos formatos</h2>
-    <div class="comparison-2col" style="margin-top: 12px; align-items: stretch;">
+    <style>
+      /* Scoped al side-by-side: el pre-wrap global parte el gutter de numeros
+         de linea (10 se dibuja como "1" / "0") cuando la columna es angosta.
+         Aca las lineas son cortas y no necesitan wrap. */
+      .s7-sbs pre { margin: 0 !important; box-shadow: none !important; }
+      .s7-sbs pre code {
+        white-space: pre !important;
+        word-break: normal !important;
+        overflow-wrap: normal !important;
+        line-height: 1.32 !important;
+      }
+      .s7-sbs .bg-secondary-card { padding: 12px 14px; }
+      .s7-sbs h3 { margin: 0 0 8px; font-size: 0.95em; }
+    </style>
+    <h2 style="margin-bottom: 6px;">El bloque de contrato, en dos formatos</h2>
+    <div class="comparison-2col s7-sbs" style="margin-top: 8px; align-items: start;">
       <div class="bg-secondary-card" style="border-left: 4px solid var(--text-muted);">
-        <p style="font-size: 0.6em; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 6px;">Contrato &mdash; §4</p>
+        <p style="font-size: 0.6em; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 4px;">Lo que dictamos</p>
         <h3 style="color: var(--text-muted);">Texto informal</h3>
-        <pre style="margin: 0; box-shadow: none; font-size: 0.62em;"><code class="language-text" data-trim data-line-numbers="|1|2-4|5-6|7-10"
+        <pre style="font-size: 0.6em;"><code class="language-text" data-trim
 >POST /projects/{id}/tasks
   entrada (body):
     title       string, requerido
@@ -2225,9 +2239,9 @@ proyectos?</code></pre>
     { error: "no se encontr&oacute; el proyecto {id}" }</code></pre>
       </div>
       <div class="bg-secondary-card" style="border-left: 4px solid var(--accent);">
-        <p style="font-size: 0.6em; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px;">OpenAPI 3.1</p>
+        <p style="font-size: 0.6em; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 0 0 4px;">OpenAPI 3.1</p>
         <h3 style="color: var(--accent);">YAML, machine-readable</h3>
-        <pre style="margin: 0; box-shadow: none; font-size: 0.58em;"><code class="language-yaml" data-trim data-line-numbers="|2|3|4-13|14-17|18-23"
+        <pre style="font-size: 0.5em;"><code class="language-yaml" data-trim data-line-numbers="|3|2|4-13|14-20|21-22"
 >paths:
   /projects/{id}/tasks:
     post:
@@ -2240,27 +2254,29 @@ proyectos?</code></pre>
               required: [title]
               properties:
                 title:    { type: string }
-                due_date: { type: string, format: date, nullable: true }
+                due_date: { type: string, format: date }
       responses:
         '201':
           description: Created
-          content: { application/json: { schema: { $ref: '#/components/schemas/Task' } } }
-        '400':
-          description: title es requerido
-        '404':
-          description: proyecto no existe</code></pre>
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400': { description: title es requerido }
+        '404': { description: proyecto no existe }</code></pre>
       </div>
     </div>
-    <p style="margin-top: 18px; font-size: 0.82em; text-align: center; max-width: 44em; margin-left: auto; margin-right: auto;">
+    <p style="margin-top: 14px; font-size: 0.78em; text-align: center; max-width: 44em; margin-left: auto; margin-right: auto;">
       Misma informaci&oacute;n, dos formatos. La derecha es <span style="color: var(--accent);">la que la IA prefiere</span> &mdash; y la que el equipo versiona ma&ntilde;ana.
     </p>
     <aside class="notes">
-      <p><strong>Click 1: ilumina <code>POST</code> a la izquierda y la key <code>post:</code> a la derecha (method). Click 2: ilumina <code>/projects/{id}/tasks</code> en ambos lados (path). Click 3: ilumina <code>entrada (body)</code> &harr; <code>requestBody</code> (schema-in). Click 4: ilumina <code>salida 201</code> &harr; <code>responses '201'</code>. Click 5: ilumina las salidas 400/404 &harr; <code>'400'</code> y <code>'404'</code> (errores).</strong></p>
-      <p><u>Slide-clave de §7. Mapeo l&iacute;nea-a-l&iacute;nea entre el bloque del §4 y el yaml.</u></p>
-      <p><em>"Ac&aacute; est&aacute; el mismo bloque de contrato que armamos en la secci&oacute;n cuatro, dos formatos. A la izquierda, el texto informal que dictamos. A la derecha, el equivalente en OpenAPI 3.1. Misma informaci&oacute;n, distinto vestido."</em></p>
-      <p><em>"Voy a recorrer las cinco piezas. Method &mdash; en el §4 es la palabra <code>POST</code> al principio; en OpenAPI es la key <code>post:</code> bajo <code>paths</code>. Path &mdash; en los dos lados es lo mismo, <code>/projects/{id}/tasks</code>, con la variable entre llaves."</em></p>
-      <p><em>"Schema-in &mdash; lo que en el §4 llam&aacute;bamos 'entrada (body)' en OpenAPI se llama <code>requestBody</code>. Y dentro hay una clave nueva: <code>schema</code>, con tipos expl&iacute;citos (<code>type: string</code>), formatos (<code>format: date</code>), required, nullable. El nivel de detalle ya no es opinable."</em></p>
-      <p><em>"Schema-out &mdash; lo que llam&aacute;bamos 'salida 201' / 'salida 400' / 'salida 404' en OpenAPI son entries dentro de <code>responses</code>, con la key igual al status code. Cada entry describe el cuerpo de la respuesta para ese c&oacute;digo. La separaci&oacute;n por status code que pintamos en la slide del §4.6 ya estaba apuntando ac&aacute; sin nombrar el formato."</em></p>
+      <p><strong>La columna izquierda queda fija; los cinco clicks recorren el yaml. Click 1: <code>post:</code> (method). Click 2: <code>/projects/{id}/tasks</code> (path). Click 3: <code>requestBody</code> (schema-in). Click 4: <code>responses '201'</code> (schema-out). Click 5: <code>'400'</code> y <code>'404'</code> (errores). En cada click, se&ntilde;alar a mano la l&iacute;nea equivalente de la izquierda.</strong></p>
+      <p><u>Slide-clave de §7. Mapeo l&iacute;nea-a-l&iacute;nea entre el bloque de contrato dictado y el yaml.</u></p>
+      <p><em>"Ac&aacute; est&aacute; el mismo bloque de contrato que armamos hace un rato, en dos formatos. A la izquierda, el texto informal que dictamos. A la derecha, el equivalente en OpenAPI 3.1. Misma informaci&oacute;n, distinto vestido."</em></p>
+      <p><em>"Voy a recorrer las cinco piezas del lado derecho, y ustedes las van siguiendo del lado izquierdo. Method &mdash; en lo que dictamos es la palabra <code>POST</code> al principio; en OpenAPI es la key <code>post:</code>. Path &mdash; en los dos lados es lo mismo, <code>/projects/{id}/tasks</code>, con la variable entre llaves; en el yaml es la key que cuelga de <code>paths</code>."</em></p>
+      <p><em>"Schema-in &mdash; lo que llam&aacute;bamos 'entrada (body)' en OpenAPI se llama <code>requestBody</code>. Y dentro hay una clave nueva: <code>schema</code>, con tipos expl&iacute;citos (<code>type: string</code>), formatos (<code>format: date</code>) y la lista de requeridos. El nivel de detalle ya no es opinable."</em></p>
+      <p><em>"Schema-out &mdash; lo que llam&aacute;bamos 'salida 201' es un entry dentro de <code>responses</code>, con la key igual al status code, y adentro la forma del cuerpo que devuelve. Ese <code>$ref</code> apunta a un schema declarado una sola vez y reusado en todos los endpoints que devuelven una Task."</em></p>
+      <p><em>"Y las salidas de falla: <code>'400'</code> y <code>'404'</code>, mismas dos que dictamos, cada una con su descripci&oacute;n. La separaci&oacute;n por status code que pintamos en el bloque de contrato ya estaba apuntando ac&aacute; sin nombrar el formato."</em></p>
       <p><em>"Cinco piezas, cinco mappings, una correspondencia exacta. La derecha no agrega informaci&oacute;n nueva; cierra ambig&uuml;edades. Y como es un archivo machine-readable, mucho de lo que vimos manualmente lo va a poder hacer una herramienta."</em></p>
     </aside>
   </section>
@@ -2294,7 +2310,7 @@ proyectos?</code></pre>
       <p><em>"Primera, ambig&uuml;edad. El yaml fija tipos, formatos como <code>format: date</code>, requeridos, nullables. Cada uno de esos detalles, en un prompt vago, lo decide la IA. En el yaml lo decid&iacute;s vos. Es la misma idea de 'vago vs espec&iacute;fico' que cerr&oacute; las cinco secciones anteriores, ahora hecha archivo."</em></p>
       <p><em>"Segunda, codegen. Y esto es lo que vamos a ver renderizado en el demo. Del mismo openapi.yaml salen docs interactivas &mdash; eso es Swagger UI, lo van a ver en pantalla en cinco minutos. Salen clientes generados en cualquier lenguaje (Python, TypeScript, Go), salen mocks que el frontend puede consumir mientras el backend no existe, salen tests que verifican que la implementaci&oacute;n cumple el contrato. Una sola fuente, muchos artefactos derivados. Eso es codegen real, no abstracci&oacute;n."</em></p>
       <p><em>"Tercera, durabilidad. Un prompt vive en una conversaci&oacute;n. Cuando cerr&aacute;s la pesta&ntilde;a se pierde, o se diluye en mil mensajes despu&eacute;s. El yaml vive en el repo: se versiona en git, se compara entre branches con un diff, se vuelve a dictar a otra IA cuando cambia algo. El supervisor arquitect&oacute;nico que vinimos nombrando toda la clase, ahora tiene un artefacto durable que dirige."</em></p>
-      <p><em>"Y con eso cerramos la parte conceptual de la clase. Lo que viene es el demo en vivo: pegar un prompt, ver canvas escribir el yaml, leerlo juntos, y al final renderizarlo en Swagger UI."</em></p>
+      <p><em>"Y con eso cerramos la parte conceptual de la clase. Lo que viene es el demo en vivo: pegar un prompt, ver el yaml aparecer, leerlo juntos, y al final renderizarlo en Swagger UI."</em></p>
     </aside>
   </section>
 
@@ -2302,7 +2318,7 @@ proyectos?</code></pre>
 
 
       <!-- ============================================================
-           §8 — Demo en vivo: canvas escribe el openapi.yaml
+           §8 — Demo en vivo: el modelo escribe el openapi.yaml
            ============================================================ -->
 <section>
 
@@ -2310,21 +2326,21 @@ proyectos?</code></pre>
   <section class="section-divider">
     <h2>Demo en vivo</h2>
     <p class="muted" style="font-size: 0.85em; max-width: 36em; margin: 16px auto 0;">
-      ChatGPT canvas escribe el <code>openapi.yaml</code>. Ustedes leen junto al profesor, endpoint por endpoint.
+      Le dictamos el contrato a una IA y devuelve el <code>openapi.yaml</code>. Ustedes leen junto al profesor, endpoint por endpoint.
     </p>
     <aside class="notes">
       <p><u>Transici&oacute;n al cierre. La clase deja el modo conceptual y entra al modo demo en vivo.</u></p>
-      <p><em>"Cerramos el recorrido conceptual. Lo que sigue no es otra secci&oacute;n te&oacute;rica: es el demo. Vamos a abrir ChatGPT, pegar un prompt y ver canvas escribir el openapi.yaml en pantalla. Ustedes me van a leer cada endpoint conmigo, mapeando al bloque del §4. Al final lo renderizamos en Swagger UI para ver las docs interactivas que salen del mismo archivo."</em></p>
+      <p><em>"Cerramos el recorrido conceptual. Lo que sigue no es otra secci&oacute;n te&oacute;rica: es el demo. Vamos a abrir un chat de IA cualquiera, pegar un prompt y ver el openapi.yaml aparecer en pantalla. Ustedes me van a leer cada endpoint conmigo, mapeando al bloque de contrato que armamos hace un rato. Al final lo renderizamos en Swagger UI para ver las docs interactivas que salen del mismo archivo."</em></p>
     </aside>
   </section>
 
   <!-- §8.2: La plantilla — el primer prompt -->
   <section>
-    <h2>El primer prompt &mdash; antes de invocar canvas</h2>
+    <h2>El primer prompt</h2>
     <p style="font-size: 0.72em; color: var(--text-muted); text-align: center; max-width: 38em; margin: 4px auto 14px;">
-      Le damos el qu&eacute;. Canvas se abre. Editamos en vivo.
+      Le damos el qu&eacute;, pieza por pieza. El modelo devuelve el archivo.
     </p>
-    <pre style="margin: 0 auto; max-width: 38em; font-size: 0.7em; box-shadow: none;"><code class="language-text" data-trim data-line-numbers="|1|3-5|7-12|14"
+    <pre style="margin: 0 auto; max-width: 38em; font-size: 0.7em; box-shadow: none;"><code class="language-text" data-trim data-line-numbers="|1|3-5|7-12"
 >Necesito un openapi.yaml (3.1) para una API de proyectos y tareas.
 
 recursos:
@@ -2336,20 +2352,18 @@ endpoints:
   POST   /projects
   GET    /projects/{id}/tasks
   POST   /projects/{id}/tasks   &rarr; 201 / 400 / 404
-  DELETE /projects/{id}/tasks/{taskId}
-
-abrilo en canvas para que podamos editarlo juntos.</code></pre>
+  DELETE /projects/{id}/tasks/{taskId}</code></pre>
     <p style="margin-top: 18px; font-size: 0.78em; color: var(--text-muted); text-align: center; max-width: 38em; margin-left: auto; margin-right: auto;">
-      Mismo dominio que el §4. Mismas cinco piezas. Ahora hechas archivo.
+      Mismo dominio que el bloque de contrato. Mismas cinco piezas. Ahora hechas archivo.
     </p>
     <aside class="notes">
-      <p><strong>Mostrar el bloque entero, sin highlight, mientras se tipea en vivo. Click 1 ilumina la l&iacute;nea de framing. Click 2 ilumina recursos. Click 3 ilumina endpoints. Click 4 ilumina la l&iacute;nea de canvas.</strong></p>
-      <p><u>Plantilla del prompt. Misma forma que §4.6 y §3.9 (vago vs espec&iacute;fico): expl&iacute;cita, pieza por pieza, mapeable a lo que termina escrito.</u></p>
-      <p><em>"Antes de invocar canvas, escribimos el prompt a mano. Esta plantilla la van a ver levantarse en vivo en mi pantalla. Vamos a recorrerla pieza por pieza, igual que recorrimos el bloque del §4."</em></p>
-      <p><em>"Primera l&iacute;nea: el framing. <code>openapi.yaml (3.1) para una API de proyectos y tareas</code>. Tres elecciones expl&iacute;citas &mdash; el formato (yaml), la versi&oacute;n (3.1) y el dominio (proyectos y tareas, el mismo del §4). Cero ambig&uuml;edad."</em></p>
+      <p><strong>Mostrar el bloque entero, sin highlight, mientras se tipea en vivo. Click 1 ilumina la l&iacute;nea de framing. Click 2 ilumina recursos. Click 3 ilumina endpoints.</strong></p>
+      <p><u>Plantilla del prompt. Misma forma que el bloque de contrato y los cierres de vago vs espec&iacute;fico: expl&iacute;cita, pieza por pieza, mapeable a lo que termina escrito. Sirve en cualquier chat de IA &mdash; no hace falta ninguna funci&oacute;n especial de editor.</u></p>
+      <p><em>"Escribimos el prompt a mano. Esta plantilla la van a ver levantarse en vivo en mi pantalla. Vamos a recorrerla pieza por pieza, igual que recorrimos el bloque de contrato."</em></p>
+      <p><em>"Primera l&iacute;nea: el framing. <code>openapi.yaml (3.1) para una API de proyectos y tareas</code>. Tres elecciones expl&iacute;citas &mdash; el formato (yaml), la versi&oacute;n (3.1) y el dominio (proyectos y tareas, el mismo que vinimos usando toda la clase). Cero ambig&uuml;edad."</em></p>
       <p><em>"Recursos. Dos: <code>Project</code> con id y name; <code>Task</code> con id, title, due_date opcional, y project_id. La interrogaci&oacute;n marca campos opcionales, igual que en TypeScript. Los nombres son los mismos que vinimos usando."</em></p>
-      <p><em>"Endpoints. Cinco. GET y POST sobre <code>/projects</code>; despu&eacute;s GET, POST y DELETE sobre <code>/projects/{id}/tasks</code> con anidaci&oacute;n. Tres methods, jerarqu&iacute;a expl&iacute;cita, y en el POST anidado dictamos los tres status: 201 cuando se cre&oacute;, 400 cuando el body est&aacute; mal, 404 cuando el proyecto no existe. Las cinco piezas del §4."</em></p>
-      <p><em>"&Uacute;ltima l&iacute;nea: <code>abrilo en canvas</code>. Eso le dice al modelo que esto va a ser un documento que vamos a editar en colaboraci&oacute;n, no una respuesta corta del chat. Si por alguna raz&oacute;n no se abre, lo pedimos expl&iacute;citamente."</em></p>
+      <p><em>"Endpoints. Cinco. GET y POST sobre <code>/projects</code>; despu&eacute;s GET, POST y DELETE sobre <code>/projects/{id}/tasks</code> con anidaci&oacute;n. Tres methods, jerarqu&iacute;a expl&iacute;cita, y en el POST anidado dictamos los tres status: 201 cuando se cre&oacute;, 400 cuando el body est&aacute; mal, 404 cuando el proyecto no existe. Las cinco piezas del bloque de contrato."</em></p>
+      <p><em>"Y fijate lo que el prompt no tiene: ninguna instrucci&oacute;n sobre la herramienta. Esto lo pod&eacute;s pegar en cualquier chat de IA. Lo que hace el trabajo es el vocabulario, no el editor."</em></p>
     </aside>
   </section>
 
@@ -2444,43 +2458,43 @@ abrilo en canvas para que podamos editarlo juntos.</code></pre>
     steps: [
       {
         title: 'Beat 1',
-        summary: 'Pegar el prompt &mdash; canvas se abre con el yaml inicial.',
+        summary: 'Pegar el prompt &mdash; el modelo devuelve el yaml.',
         color: 'var(--accent-secondary)',
         borderColor: 'var(--text-muted)',
         example: '<div style="color: var(--text-muted); margin-bottom: 6px;">Pegar el prompt:</div>'
-          + '<div style="line-height: 1.5;">Canvas se abre con el yaml inicial. Frase clave: <em>&laquo;esto no lo escribimos; lo dictamos&raquo;</em>.</div>'
+          + '<div style="line-height: 1.5;">El modelo devuelve el yaml completo. Frase clave: <em>&laquo;esto no lo escribimos; lo dictamos&raquo;</em>.</div>'
       },
       {
         title: 'Beat 2',
-        summary: 'Leer el primer endpoint &mdash; mapear al bloque del §4.',
+        summary: 'Leer el primer endpoint &mdash; mapear a las cinco piezas.',
         color: 'var(--accent-secondary)',
         borderColor: 'var(--text-muted)',
         example: '<div style="color: var(--text-muted); margin-bottom: 6px;">Leer <code>POST /projects/{id}/tasks</code>:</div>'
-          + '<div style="line-height: 1.5;">Recorrer en voz alta: <code>paths</code>, <code>post</code>, <code>parameters</code>, <code>requestBody</code>, <code>responses</code>. Mapear a las cinco piezas del §4.</div>'
+          + '<div style="line-height: 1.5;">Recorrer en voz alta: <code>paths</code>, <code>post</code>, <code>parameters</code>, <code>requestBody</code>, <code>responses</code>. Mapear a las cinco piezas del bloque de contrato.</div>'
       },
       {
         title: 'Beat 3',
-        summary: 'Agregar un endpoint en vivo desde el chat.',
+        summary: 'Pedir un endpoint m&aacute;s desde el chat.',
         color: 'var(--accent-secondary)',
         borderColor: 'var(--text-muted)',
         example: '<div style="color: var(--text-muted); margin-bottom: 6px;">Pedirle al modelo:</div>'
-          + '<div style="line-height: 1.5;"><em>&laquo;agregame DELETE /projects/{id}, con 404 si no existe&raquo;</em>. Mostrar canvas actualizando en tiempo real. Frase: <em>&laquo;el contrato es editable; no es un prompt de un solo tiro&raquo;</em>.</div>'
+          + '<div style="line-height: 1.5;"><em>&laquo;agregame DELETE /projects/{id}, con 404 si no existe&raquo;</em>. Vuelve el yaml con el endpoint nuevo. Frase: <em>&laquo;el contrato es editable; no es un prompt de un solo tiro&raquo;</em>.</div>'
       },
       {
         title: 'Beat 4',
-        summary: 'Editar a mano dentro del canvas.',
-        color: 'var(--accent-secondary)',
-        borderColor: 'var(--text-muted)',
-        example: '<div style="color: var(--text-muted); margin-bottom: 6px;">Editar el yaml directamente:</div>'
-          + '<div style="line-height: 1.5;">Por ejemplo, agregar un campo <code>description</code> opcional al schema de <code>Task</code>. Frase: <em>&laquo;la IA y vos comparten editor&raquo;</em>.</div>'
-      },
-      {
-        title: 'Beat 5',
         summary: 'Pegar el yaml en <code>editor.swagger.io</code> &mdash; ver Swagger UI renderizado.',
         color: 'var(--accent-secondary)',
         borderColor: 'var(--text-muted)',
         example: '<div style="color: var(--text-muted); margin-bottom: 6px;">Renderizar el yaml:</div>'
-          + '<div style="line-height: 1.5;">Pegar en <code>editor.swagger.io</code>. Click en <code>POST /projects</code> &rarr; <em>&laquo;Try it out&raquo;</em> &rarr; <em>&laquo;Execute&raquo;</em>. Frase: <em>&laquo;del mismo archivo salieron docs interactivas. Codegen es real, no abstracci&oacute;n&raquo;</em>.</div>'
+          + '<div style="line-height: 1.5;">Copiar del chat y pegar en <code>editor.swagger.io</code>. Click en <code>POST /projects</code> &rarr; <em>&laquo;Try it out&raquo;</em>. Frase: <em>&laquo;del mismo archivo salieron docs interactivas. Codegen es real, no abstracci&oacute;n&raquo;</em>.</div>'
+      },
+      {
+        title: 'Beat 5',
+        summary: 'Editar el yaml a mano ah&iacute; mismo &mdash; las docs se actualizan solas.',
+        color: 'var(--accent-secondary)',
+        borderColor: 'var(--text-muted)',
+        example: '<div style="color: var(--text-muted); margin-bottom: 6px;">Editar en el panel izquierdo del editor:</div>'
+          + '<div style="line-height: 1.5;">Agregar un campo <code>description</code> opcional al schema de <code>Task</code> y mirar la derecha actualizarse. Frase: <em>&laquo;el contrato es un archivo: lo edit&aacute;s vos tambi&eacute;n, no s&oacute;lo la IA&raquo;</em>.</div>'
       },
       {
         title: 'Beat 6',

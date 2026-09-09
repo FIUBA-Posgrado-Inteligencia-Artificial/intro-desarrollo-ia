@@ -137,35 +137,33 @@ NB: omitido un hook tipo big-question (era redundante con la pregunta de semana 
 
 **Animations:** none new.
 
-## Task 7 — §7 De lo local al stack (salto)
+## Task 7 — §7 OpenAPI: el contrato escrito
 
-**Subagent dispatch.** Inputs: spine §7, source `07-de-lo-local-al-stack.md`.
+**Subagent dispatch.** Inputs: spine §7, source `07-openapi-el-contrato-escrito.md`.
 
-**Slide arc (7–8 slides):**
-1. Section opener: `Pieza 6 — Salto` con `piece-roadmap` en `active-6`.
-2. Hook: "Hasta ahora todo pasaba en una pestaña." Frase grande, sola. La pestaña no aguanta un servidor.
-3. Por qué Canvas no alcanza — tres-card o `comparison-2col` con tres elementos: proceso / puerto / sistema de archivos.
-4. Por qué CLI antes que IDE — tres razones del source (transparencia / foco didáctico / continuidad con semana 4). `comparison-2col` o tarjetas.
-5. El stack del demo — diagrama horizontal o pipeline-box: Python · FastAPI · SQLite · Uvicorn · venv. Cada caja con frase de una línea explicativa al hover (tooltip ya viene en `.pipeline-box`).
-6. FastAPI es una elección — slide con `data-table` o tarjetas: alternativas (Node+Express / Django / Flask / Go / Rails). Frase de cierre: "El punto no es aprenderlas. Es saberlas."
-7. Tarea para semana 4 — slide tipo checklist con los 5 ítems del source (Python ≥3.11, Node ≥18, `npm install -g @anthropic-ai/claude-code`, `claude --version`, avisar si falla). Bloque de código con los comandos exactos.
-8. Vago vs específico — bloque del source con la estructura del proyecto Python.
+**Slide arc (3 slides):**
+1. Section opener: `Pieza 6 — OpenAPI (el contrato escrito)` con `piece-roadmap` en `active-6`. Lo que veníamos llamando "contrato" tiene nombre y archivo.
+2. El bloque de contrato en dos formatos — `comparison-2col`: a la izquierda el texto informal dictado en §4, a la derecha el equivalente en OpenAPI 3.1. La columna izquierda queda fija; los cinco highlights recorren el yaml (method → path → `requestBody` → `responses '201'` → `'400'`/`'404'`).
+   - **Cuidado con el layout:** el `white-space: pre-wrap` global del `<head>` parte el gutter de números de línea cuando la columna es angosta. El slide trae un `<style>` scopeado (`.s7-sbs`) que lo revierte. Mantener las líneas del yaml cortas para que no haga falta wrap.
+   - **Un solo `data-line-numbers` por slide.** Dos bloques con highlights progresivos generan dos secuencias de fragments independientes y la coreografía de las notas deja de coincidir.
+3. Por qué importa que sea un archivo — tres tarjetas: menos ambigüedad, codegen real (Swagger UI, clientes, mocks, tests), durabilidad versionada.
 
-**Patterns:** `comparison-2col`, `pipeline-box` con tooltips, `code-walkthrough`, tarjetas.
+**Patterns:** `comparison-2col`, `code-walkthrough` con highlights progresivos.
 
 **Animations:** none new.
 
 ## Task 8 — §8 Demo en vivo (scaffolding del cierre)
 
-**Subagent dispatch.** Inputs: spine §8, source `08-demo-en-vivo.md`. **Importante:** sección de scaffolding mínimo — la animación real es el demo en vivo. No inventar dominio si no está decidido; usar plantilla con placeholders.
+**Subagent dispatch.** Inputs: spine §8, source `08-demo-en-vivo.md`. **Importante:** sección de scaffolding mínimo — la animación real es el demo en vivo.
 
-**Slide arc (4–6 slides):**
+**Restricción de herramienta:** el demo no depende de ninguna función de editor colaborativo. Cualquier chat de IA que devuelva el yaml en un bloque copiable sirve; `editor.swagger.io` es donde el archivo se vuelve tangible y editable. No nombrar productos de canvas en el deck.
+
+**Slide arc (5 slides):**
 1. Section divider — `Demo en vivo` (clase `section-divider`).
-2. Lo que se va a mostrar — la lista de los 5 requisitos del source (3 methods, foreign key visible, camino de error 4xx, frontend mínimo, dominio NO-trivial). `comparison-2col` o lista densa transformada en tarjetas.
-3. La plantilla de contrato — `code-walkthrough` con la plantilla del source (stack + tablas + endpoints + frontend). Pre-fragmentar para revelar bloque por bloque mientras el profesor la dicta en vivo.
+2. El primer prompt — `code-walkthrough` con la plantilla del source. Tres highlights: framing, recursos, endpoints.
+3. Lo que el yaml tiene que tener — los 5 requisitos del source (3 methods, jerarquía de recursos, una respuesta de error, schemas tipados, iteración en vivo) como tarjetas.
 4. Beats del demo — `clickable-steps` con los 6 beats numerados. Texto corto en cada paso; el detalle vive en la lectura previa del profesor. (Reuse `clickable-steps.js` de semana 01: copiar a `slides/clickable-steps.js`.)
-5. Cierre — slide de 30 segundos final: "Ustedes no tipearon nada. Lo que dirigieron fue el contrato." Espejo cerrado con semana 02. Una sola frase grande.
-6. (Opcional) Agradecimiento o "preguntas?" — sección dividida.
+5. Cierre — slide de 30 segundos final: "Ustedes no tipearon nada. Lo que dirigieron fue el contrato." Espejo cerrado con semana 02, bridge a semana 4.
 
 **Patterns:** `section-divider`, `code-walkthrough`, `clickable-steps` (reuse JS desde semana 01).
 
